@@ -3,8 +3,8 @@ $this->db->join('tbl_product_new','tbl_wishlist.product_id=tbl_product_new.produ
                                 $wishlist_new_res=$this->db->get_where('tbl_wishlist',array('customer_id'=>$_SESSION["customer_id"]));
                                 //$product_res=$this->db->get_where("tbl_product_new");
                                 // $wishlist_new_res=$this->db->get_where('tbl_wishlist',array('customer_id'=>$_SESSION["customer_id"]));
+    $total_products=$wishlist_new_res->num_rows();
 
-$total_products=$wishlist_new_res->num_rows();
 ?>
 
 <!DOCTYPE html>

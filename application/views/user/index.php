@@ -16,39 +16,9 @@
 
         <main class="main">
         <?php 
-                // include_once('slider_view.php');
+               include_once('new_slider_view.php');
             ?>
-            <div class="intro-slider-container">
-                <div class="owl-carousel owl-simple owl-light owl-nav-inside" data-toggle="owl" data-owl-options='{"nav": false}'>
-                    <div class="intro-slide" style="background-image: url(<?php echo base_url(); ?>template/user/assets/images/demos/demo-2/slider/slide-1.jpg);">
-                        <div class="container intro-content">
-                            <h3 class="intro-subtitle" style='color:black'>Luxurious Jewellery</h3><!-- End .h3 intro-subtitle -->
-                            <h1 class="intro-title"  style='color:black'>Find the Style <br>That Suits You.</h1><!-- End .intro-title -->
-
-                            <a href="category.html" class="btn btn-primary"  style='color:black;border-color: black' >
-                                <span>Shop Now</span>
-                                <i class="icon-long-arrow-right"></i>
-                            </a>
-                        </div><!-- End .container intro-content -->
-                    </div><!-- End .intro-slide -->
-
-                    <div class="intro-slide" style="background-image: url(<?php echo base_url(); ?>template/user/assets/images/demos/demo-2/slider/slide-2.jpg);">
-                        <div class="container intro-content" style="margin-left:450px">
-                            <h3 class="intro-subtitle" style='color:black'>Elegant Studs  Jewellery</h3>
-                            <h1 class="intro-title" style='color:black;'>Stunning  <br>Pendant <br><span class="text-primary"><sup>$</sup>49,99</span></h1><!-- End .intro-title -->
-
-                            <a href="category.html" class="btn btn-primary" style='color:black;border-color: black;'>
-                                <span>Shop Now</span>
-                                <i class="icon-long-arrow-right"></i>
-                            </a>
-                        </div><!-- End .container intro-content -->
-                    </div><!-- End .intro-slide -->
-
-                    
-                </div><!-- End .owl-carousel owl-simple -->
-
-                <span class="slider-loader text-white"></span><!-- End .slider-loader -->
-            </div>
+           
             <!-- End .intro-slider-container -->
             <br>
             <div class="brands-border owl-carousel owl-simple" data-toggle="owl" 
@@ -87,25 +57,10 @@
                                     foreach($resultsets->result() as $result_row)
                                     {
                                 ?>
-                <a href="#" class="brand">
-                    <img src="<?php echo base_url(); ?>files/admin/category/thumb/<?php echo $result_row->category_image; ?>" alt="Brand Name">
+                <a href="<?php echo base_url(); ?>user/manage_category_view/<?php echo $result_row->category_id; ?>/<?php echo $result_row->category_name; ?>" class="brand">
+                    <img src="<?php echo base_url(); ?>files/admin/category/<?php echo $result_row->category_image; ?>" alt="Brand Name">
                 </a>
                 
-                <a href="#" class="brand">
-                    <img src="https://ion.r2net.com/images/HomePage/SpecialGalleriesBanner/Desktop/TennisBracelets.jpg" alt="Brand Name">
-                </a>
-
-                <a href="#" class="brand">
-                    <img src="https://ion.r2net.com/images/HomePage/SpecialGalleriesBanner/Desktop/DiamondPendants.jpg" alt="Brand Name">
-                </a>
-
-                <a href="#" class="brand">
-                    <img src="https://ion.r2net.com/images/HomePage/SpecialGalleriesBanner/Desktop/AnniversaryRings.jpg" alt="Brand Name">
-                </a>
-
-                <a href="#" class="brand">
-                    <img src="https://ion.r2net.com/images/HomePage/SpecialGalleriesBanner/Desktop/EternityRings.jpg" alt="Brand Name">
-                </a>
                 <?php
                                     }
                 ?>
@@ -201,21 +156,35 @@
                             }'>
                             <?php 
                                    
-                                    $top_selling_query="SELECT tp . * , tod.product_id, sum( tod.product_qty )
-                                    FROM tbl_order_details tod
-                                    INNER JOIN tbl_product_new tp ON tod.product_id = tp.product_id
-                                    GROUP BY tod.product_id
-                                    ORDER BY sum( tod.product_qty ) DESC limit 8 ";
-                                    $product_res=$this->db->query($top_selling_query);
+                                    // $top_selling_query="SELECT tp . * , tod.product_id, sum( tod.product_qty )
+                                    // FROM tbl_order_details tod
+                                    // INNER JOIN tbl_product_new tp ON tod.product_id = tp.product_id
+                                    // GROUP BY tod.product_id
+                                    // ORDER BY sum( tod.product_qty ) DESC limit 8 ";
+                                    // $product_res=$this->db->query($top_selling_query);
+
+                                    $page_data["product_res"]=$this->db->get("tbl_product_new");
+                                    $this->db->order_by('product_id','desc');
+                                    $product_res=$this->db->get("tbl_product_new");
+
                                     foreach($product_res->result() as $product_row)
                                     {
                                         ?>
                             <div class="product product-11 text-center">
                                 <figure class="product-media">
-                                    <a href="<?php echo base_url(); ?>user/manage_product_detail/<?php echo $product_row->product_id; ?>/<?php echo $result_row->product_seo_slug; ?>">
+                                    <a href="<?php echo base_url(); ?>user/manage_product_detail/<?php echo $product_row->product_id; ?>/<?php echo $product_row->product_seo_slug; ?>">
                                         <img src="<?php echo base_url(); ?>files/admin/product/med/<?php echo $product_row->product_image; ?>" alt="Product image" class="product-image">
                                         
-                                        <img src="https://cdn.caratlane.com/media/catalog/product/cache/6/image/480x480/9df78eab33525d08d6e5fb8d27136e95//J/R/JR07340-1RP9OO_12_listhover.jpg" alt="Product image" class="product-image-hover">
+                                        <?php 
+                                            $product_additional_image_res=$this->db->get_where('tbl_product_additional_image',array('product_id'=>$product_row->product_id));
+                                            foreach($product_additional_image_res->result() as 
+                                                $product_additional_image_row)
+                                            {
+                                                ?>
+                                                <img src="<?php echo base_url(); ?>files/admin/product/med/<?php echo $product_additional_image_row->product_additional_image; ?>" class="product-image-hover">
+                                                <?php
+                                            }
+                                                ?>
                                         
                                     </a>
                                 
@@ -239,164 +208,8 @@
                              ?>
                             <!-- End .product -->
 
-                            <div class="product product-11 text-center">
-                                <figure class="product-media">
-                                    <a href="product.html">
-                                        <img src="https://cdn.caratlane.com/media/catalog/product/cache/6/image/480x480/9df78eab33525d08d6e5fb8d27136e95//J/T/JT01059-1RP9P0_11_listfront.jpg" alt="Product image" class="product-image">
-                                        <img src="https://cdn.caratlane.com/media/catalog/product/cache/6/image/480x480/9df78eab33525d08d6e5fb8d27136e95//J/T/JT01059-1RP9P0_12_listhover.jpg" alt="Product image" class="product-image-hover">
-                                    </a>
-
-                                    <div class="product-action-vertical">
-                                        <a href="" class="btn-product-icon btn-wishlist"><span>add to wishlist</span></a>
-                                    </div><!-- End .product-action-vertical -->
-                                </figure><!-- End .product-media -->
-
-                                <div class="product-body">
-                                    <h3 class="product-title"><a href="product.html">Bracelete</a></h3><!-- End .product-title -->
-                                    <div class="product-price">
-                                        $746,00
-                                    </div><!-- End .product-price -->
-
-                                    
-                                </div><!-- End .product-body -->
-                                <div class="product-action">
-                                    <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                </div><!-- End .product-action -->
-                            </div><!-- End .product -->
-
-                            <div class="product product-11 text-center">
-                                <figure class="product-media">
-                                    <!--<span class="product-label label-circle label-new">New</span>-->
-                                    <a href="product.html">
-                                        <img src="https://cdn.caratlane.com/media/catalog/product/cache/6/image/480x480/9df78eab33525d08d6e5fb8d27136e95//J/L/JL03370-YGP9EB_11_listfront.jpg" alt="Product image" class="product-image">
-                                        <img src="https://cdn.caratlane.com/media/catalog/product/cache/6/image/480x480/9df78eab33525d08d6e5fb8d27136e95//J/L/JL03370-YGP9EB_12_listhover.jpg" alt="Product image" class="product-image-hover">
-                                    </a>
-
-                                    <div class="product-action-vertical">
-                                        <a href="#" class="btn-product-icon btn-wishlist"><span>add to wishlist</span></a>
-                                    </div><!-- End .product-action-vertical -->
-
-                                </figure><!-- End .product-media -->
-
-                                <div class="product-body">
-                                    <h3 class="product-title"><a href="product.html">Chain</a></h3><!-- End .product-title -->
-                                    <div class="product-price">
-                                        $970,00
-                                    </div><!-- End .product-price -->
-                                </div><!-- End .product-body -->
-                                <div class="product-action">
-                                    <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                </div><!-- End .product-action -->
-                            </div><!-- End .product -->
-
-                            <div class="product product-11 text-center">
-                                <figure class="product-media">
-                                    <!--<span class="product-label label-circle label-sale">Sale</span>-->
-                                    <a href="product.html">
-                                        <img src="https://cdn.caratlane.com/media/catalog/product/cache/6/image/480x480/9df78eab33525d08d6e5fb8d27136e95//J/S/JS00134-YGP900_11_listfront.jpg" alt="Product image" class="product-image">
-                                        <img src="https://cdn.caratlane.com/media/catalog/product/cache/6/image/480x480/9df78eab33525d08d6e5fb8d27136e95//J/S/JS00134-YGP900_12_listhover.jpg" alt="Product image" class="product-image-hover">
-                                    </a>
-
-                                    <div class="product-action-vertical">
-                                        <a href="#" class="btn-product-icon btn-wishlist"><span>add to wishlist</span></a>
-                                    </div><!-- End .product-action-vertical -->
-
-                                </figure><!-- End .product-media -->
-
-                                <div class="product-body">
-                                    <h3 class="product-title"><a href="product.html">Mangal Sutra</a></h3><!-- End .product-title -->
-                                    <div class="product-price">
-                                        <span class="new-price">$337,00</span>
-                                        <span class="old-price">Was $449,00</span>
-                                    </div><!-- End .product-price -->
-
-                                    <div class="product-nav product-nav-dots">
-                                        <a href="#" class="active" style="background: #878883;"><span class="sr-only">Color name</span></a>
-                                        <a href="#" style="background: #dfd5c2;"><span class="sr-only">Color name</span></a>
-                                    </div><!-- End .product-nav -->
-                                </div><!-- End .product-body -->
-                                <div class="product-action">
-                                    <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                </div><!-- End .product-action -->
-                            </div><!-- End .product -->
-
-                            <div class="product product-11 text-center">
-                                <figure class="product-media">
-                                    <a href="product.html">
-                                        <img src="https://cdn.caratlane.com/media/catalog/product/cache/6/image/480x480/9df78eab33525d08d6e5fb8d27136e95//J/R/JR04454-PTP600_11_listfront.jpg" alt="Product image" class="product-image">
-                                        <img src="https://cdn.caratlane.com/media/catalog/product/cache/6/image/480x480/9df78eab33525d08d6e5fb8d27136e95//J/R/JR04454-PTP600_12_listhover.jpg" alt="Product image" class="product-image-hover">
-                                    </a>
-
-                                    <div class="product-action-vertical">
-                                        <a href="#" class="btn-product-icon btn-wishlist"><span>add to wishlist</span></a>
-                                    </div><!-- End .product-action-vertical -->
-
-                                </figure><!-- End .product-media -->
-
-                                <div class="product-body">
-                                    <h3 class="product-title"><a href="product.html">Platinium Ring</a></h3><!-- End .product-title -->
-                                    <div class="product-price">
-                                        $675,00
-                                    </div><!-- End .product-price -->
-
-                                    <div class="product-nav product-nav-dots">
-                                        <a href="#" class="active" style="background: #74543e;"><span class="sr-only">Color name</span></a>
-                                        <a href="#" style="background: #e8e8e8;"><span class="sr-only">Color name</span></a>
-                                    </div><!-- End .product-nav -->
-                                </div><!-- End .product-body -->
-                                <div class="product-action">
-                                    <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                </div><!-- End .product-action -->
-                            </div><!-- End .product -->
-
-                            <div class="product product-11 text-center">
-                                <figure class="product-media">
-                                    <a href="product.html">
-                                        <img src="https://cdn.caratlane.com/media/catalog/product/cache/6/image/480x480/9df78eab33525d08d6e5fb8d27136e95//J/E/JE05139-YGP9EB_11_listfront.jpg" alt="Product image" class="product-image">
-                                        <img src="https://cdn.caratlane.com/media/catalog/product/cache/6/image/480x480/9df78eab33525d08d6e5fb8d27136e95//J/E/JE05139-YGP9EB_12_listhover.jpg" alt="Product image" class="product-image-hover">
-                                    </a>
-
-                                    <div class="product-action-vertical">
-                                        <a href="#" class="btn-product-icon btn-wishlist"><span>add to wishlist</span></a>
-                                    </div><!-- End .product-action-vertical -->
-
-                                </figure><!-- End .product-media -->
-
-                                <div class="product-body">
-                                    <h3 class="product-title"><a href="product.html">Peacock Earrings</a></h3><!-- End .product-title -->
-                                    <div class="product-price">
-                                        $457,00
-                                    </div><!-- End .product-price -->
-                                </div><!-- End .product-body -->
-                                <div class="product-action">
-                                    <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                </div><!-- End .product-action -->
-                            </div><!-- End .product -->
-
-                            <div class="product product-11 text-center">
-                                <figure class="product-media">
-                                    <a href="product.html">
-                                        <img src="https://cdn.caratlane.com/media/catalog/product/cache/6/image/480x480/9df78eab33525d08d6e5fb8d27136e95//U/L/UL00337-YG00P0_11_listfront.jpg" alt="Product image" class="product-image">
-                                        <img src="https://cdn.caratlane.com/media/catalog/product/cache/6/image/480x480/9df78eab33525d08d6e5fb8d27136e95//U/L/UL00337-YG00P0_12_listhover.jpg" alt="Product image" class="product-image-hover">
-                                    </a>
-
-                                    <div class="product-action-vertical">
-                                        <a href="#" class="btn-product-icon btn-wishlist"><span>add to wishlist</span></a>
-                                    </div><!-- End .product-action-vertical -->
-
-                                </figure><!-- End .product-media -->
-
-                                <div class="product-body">
-                                    <h3 class="product-title"><a href="product.html">Pearl Necklace</a></h3><!-- End .product-title -->
-                                    <div class="product-price">
-                                        $251,00
-                                    </div><!-- End .product-price -->
-                                </div><!-- End .product-body -->
-                                <div class="product-action">
-                                    <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                </div><!-- End .product-action -->
-                            </div><!-- End .product -->
                         </div>
+
                         <!-- End .owl-carousel -->
                     </div><!-- .End .tab-pane -->
                     <div class="tab-pane p-0 fade" id="products-sale-tab" role="tabpanel" aria-labelledby="products-sale-link">
@@ -713,14 +526,14 @@
                                     <div class="product product-11 text-center">
                                         <figure class="product-media">
                                         <a href="<?php echo base_url(); ?>user/manage_product_detail/<?php echo $result_row->product_id; ?>/<?php echo $result_row->product_seo_slug; ?>">
-                                                <img src="<?php echo base_url(); ?>files/admin/product/thumb/<?php echo $result_row->product_image; ?>" alt="Product image" class="product-image">
+                                                <img src="<?php echo base_url(); ?>files/admin/product/med/<?php echo $result_row->product_image; ?>" alt="Product image" class="product-image">
                                                 <?php 
                                             $product_additional_image_res=$this->db->get_where('tbl_product_additional_image',array('product_id'=>$result_row->product_id));
                                             foreach($product_additional_image_res->result() as 
                                                 $product_additional_image_row)
                                             {
                                                 ?>
-                                                <img src="<?php echo base_url(); ?>files/admin/product/small/<?php echo $product_additional_image_row->product_additional_image; ?>" class="product-image-hover">
+                                                <img src="<?php echo base_url(); ?>files/admin/product/med/<?php echo $product_additional_image_row->product_additional_image; ?>" class="product-image-hover">
                                                 <?php
                                             }
                                                 ?>
@@ -749,190 +562,11 @@
                                 <?php
                                     } 
                                 ?>
-                                
-                         
-                                
-                                <div class="col-6 col-md-4 col-lg-3 ">
-                                    <div class="product product-11 text-center">
-                                        <figure class="product-media">
-                                            <!--<span class="product-label label-circle label-sale">Sale</span>-->
-                                            <a href="product.html">
-                                                <img src="https://cdn.caratlane.com/media/catalog/product/cache/6/image/480x480/9df78eab33525d08d6e5fb8d27136e95//J/E/JE06090-1YP9ED_11_listfront.jpg" alt="Product image" class="product-image">
-                                                <img src="https://cdn.caratlane.com/media/catalog/product/cache/6/image/480x480/9df78eab33525d08d6e5fb8d27136e95//J/E/JE06090-1YP9ED_12_listhover.jpg" alt="Product image" class="product-image-hover">
-                                            </a>
-
-                                            <div class="product-action-vertical">
-                                                <a href="#" class="btn-product-icon btn-wishlist "><span>add to wishlist</span></a>
-                                            </div><!-- End .product-action-vertical -->
-                                        </figure><!-- End .product-media -->
-
-                                        <div class="product-body">
-                                            <!--<div class="product-cat">
-                                                <a href="#">Furniture</a>
-                                            </div>--><!-- End .product-cat -->
-                                            <h3 class="product-title"><a href="product.html">Gold Earrings</a></h3><!-- End .product-title -->
-                                            <div class="product-price">
-                                                <span class="new-price">$94,00</span>
-                                                <span class="old-price">Was $94,00</span>
-                                            </div><!-- End .product-price -->
-                                        </div><!-- End .product-body -->
-                                        <div class="product-action">
-                                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                        </div><!-- End .product-action -->
-                                    </div><!-- End .product -->
-                                </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
-
-                                <div class="col-6 col-md-4 col-lg-3 ">
-                                    <div class="product product-11 text-center">
-                                        <figure class="product-media">
-                                            <a href="product.html">
-                                                <img src="https://cdn.caratlane.com/media/catalog/product/cache/6/image/480x480/9df78eab33525d08d6e5fb8d27136e95//J/T/JT01507-1RP900_11_listfront.jpg" alt="Product image" class="product-image">
-                                                <img src="https://cdn.caratlane.com/media/catalog/product/cache/6/image/480x480/9df78eab33525d08d6e5fb8d27136e95//J/T/JT01507-1RP900_12_listhover.jpg" alt="Product image" class="product-image-hover">
-                                            </a>
-
-                                            <div class="product-action-vertical">
-                                                <a href="#" class="btn-product-icon btn-wishlist "><span>add to wishlist</span></a>
-                                            </div><!-- End .product-action-vertical -->
-                                        </figure><!-- End .product-media -->
-
-                                        <div class="product-body">
-                                            <!--
-                                            <div class="product-cat">
-                                                <a href="#">Lighting</a>
-                                            </div>--><!-- End .product-cat -->
-                                            <h3 class="product-title"><a href="product.html">Bangles</a></h3><!-- End .product-title -->
-                                            <div class="product-price">
-                                                $401,00
-                                            </div><!-- End .product-price -->
-
-                                            <!--<div class="product-nav product-nav-dots">
-                                                <a href="#" class="active" style="background: #e8e8e8;"><span class="sr-only">Color name</span></a>
-                                                <a href="#" style="background: #333333;"><span class="sr-only">Color name</span></a>
-                                            </div>--><!-- End .product-nav -->
-
-                                        </div><!-- End .product-body -->
-                                        <div class="product-action">
-                                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                        </div><!-- End .product-action -->
-                                    </div><!-- End .product -->
-                                </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
-
-                                <div class="col-6 col-md-4 col-lg-3 ">
-                                    <div class="product product-11 text-center">
-                                        <figure class="product-media">
-                                            <a href="product.html">
-                                                <img src="https://cdn.caratlane.com/media/catalog/product/cache/6/image/480x480/9df78eab33525d08d6e5fb8d27136e95//J/T/JT01508-1RP500_11_listfront.jpg" alt="Product image" class="product-image">
-                                                <img src="https://cdn.caratlane.com/media/catalog/product/cache/6/image/480x480/9df78eab33525d08d6e5fb8d27136e95//J/T/JT01508-1RP500_12_listhover.jpg" alt="Product image" class="product-image-hover">
-                                            </a>
-
-                                            <div class="product-action-vertical">
-                                                <a href="#" class="btn-product-icon btn-wishlist "><span>add to wishlist</span></a>
-                                            </div><!-- End .product-action-vertical -->
-                                        </figure><!-- End .product-media -->
-
-                                        <div class="product-body">
-                                            <div class="product-cat">
-                                                <a href="#">Decor</a>
-                                            </div><!-- End .product-cat -->
-                                            <h3 class="product-title"><a href="product.html">Diamond Band</a></h3><!-- End .product-title -->
-                                            <div class="product-price">
-                                                $259,00
-                                            </div><!-- End .product-price -->
-                                        </div><!-- End .product-body -->
-                                        <div class="product-action">
-                                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                        </div><!-- End .product-action -->
-                                    </div><!-- End .product -->
-                                </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
-
-                                <div class="col-6 col-md-4 col-lg-3 ">
-                                    <div class="product product-11 text-center">
-                                        <figure class="product-media">
-                                            <span class="product-label label-circle label-new">New</span>
-                                            <a href="product.html">
-                                                <img src="https://cdn.caratlane.com/media/catalog/product/cache/6/image/480x480/9df78eab33525d08d6e5fb8d27136e95//J/T/JT01013-1RP600_11_listfront.jpg" alt="Product image" class="product-image">
-                                                <img src="https://cdn.caratlane.com/media/catalog/product/cache/6/image/480x480/9df78eab33525d08d6e5fb8d27136e95//J/T/JT01013-1RP600_12_listhover.jpg" alt="Product image" class="product-image-hover">
-                                            </a>
-
-                                            <div class="product-action-vertical">
-                                                <a href="#" class="btn-product-icon btn-wishlist "><span>add to wishlist</span></a>
-                                            </div><!-- End .product-action-vertical -->
-                                        </figure><!-- End .product-media -->
-
-                                        <div class="product-body">
-                                            <!--<div class="product-cat">
-                                                <a href="#">Furniture</a>
-                                            </div>--><!-- End .product-cat -->
-                                            <h3 class="product-title"><a href="product.html">Love Bracelete</a></h3><!-- End .product-title -->
-                                            <div class="product-price">
-                                                $3.107,00
-                                            </div><!-- End .product-price -->
-                                        </div><!-- End .product-body -->
-                                        <div class="product-action">
-                                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                        </div><!-- End .product-action -->
-                                    </div><!-- End .product -->
-                                </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
-
-                                <div class="col-6 col-md-4 col-lg-3 ">
-                                    <div class="product product-11 text-center">
-                                        <figure class="product-media">
-                                            <a href="product.html">
-                                                <img src="https://cdn.caratlane.com/media/catalog/product/cache/6/image/480x480/9df78eab33525d08d6e5fb8d27136e95//J/C/JC00048-1RP900_11_listfront.jpg" alt="Product image" class="product-image">
-                                                <img src="https://cdn.caratlane.com/media/catalog/product/cache/6/image/480x480/9df78eab33525d08d6e5fb8d27136e95//J/C/JC00048-1RP900_12_listhover.jpg" alt="Product image" class="product-image-hover">
-                                            </a>
-
-                                            <div class="product-action-vertical">
-                                                <a href="#" class="btn-product-icon btn-wishlist "><span>add to wishlist</span></a>
-                                            </div><!-- End .product-action-vertical -->
-                                        </figure><!-- End .product-media -->
-
-                                        <div class="product-body">
-                                            <!--<div class="product-cat">
-                                                <a href="#">Furniture</a>
-                                            </div>--><!-- End .product-cat -->
-                                            <h3 class="product-title"><a href="product.html">Adjustable Ring</a></h3><!-- End .product-title -->
-                                            <div class="product-price">
-                                                $2.486,00
-                                            </div><!-- End .product-price -->
-                                        </div><!-- End .product-body -->
-                                        <div class="product-action">
-                                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                        </div><!-- End .product-action -->
-                                    </div><!-- End .product -->
-                                </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
-
-                                <div class="col-6 col-md-4 col-lg-3 ">
-                                    <div class="product product-11 text-center">
-                                        <figure class="product-media">
-                                            <a href="product.html">
-                                                <img src="https://cdn.caratlane.com/media/catalog/product/cache/6/image/480x480/9df78eab33525d08d6e5fb8d27136e95//S/R/SR01952-WGP900_11_listfront.jpg" alt="Product image" class="product-image">
-                                                <img src="https://cdn.caratlane.com/media/catalog/product/cache/6/image/480x480/9df78eab33525d08d6e5fb8d27136e95//S/R/SR01952-WGP900_12_listhover.jpg" alt="Product image" class="product-image-hover">
-                                            </a>
-
-                                            <div class="product-action-vertical">
-                                                <a href="#" class="btn-product-icon btn-wishlist "><span>add to wishlist</span></a>
-                                            </div><!-- End .product-action-vertical -->
-                                        </figure><!-- End .product-media -->
-
-                                        <div class="product-body">
-                                            <!--<div class="product-cat">
-                                                <a href="#">Decor</a>
-                                            </div>--><!-- End .product-cat -->
-                                            <h3 class="product-title"><a href="product.html">Diamond Ring</a></h3><!-- End .product-title -->
-                                            <div class="product-price">
-                                                $199,00
-                                            </div><!-- End .product-price -->
-                                        </div><!-- End .product-body -->
-                                        <div class="product-action">
-                                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                        </div><!-- End .product-action -->
-                                    </div><!-- End .product -->
-                                </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
 
                                 
                             </div><!-- End .row -->
-                        </div><!-- End .products -->
+                        </div>
+                        <!-- End .products -->
                     </div><!-- .End .tab-pane -->
                     
                 </div><!-- End .tab-content -->

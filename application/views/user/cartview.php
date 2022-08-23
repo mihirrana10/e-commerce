@@ -135,7 +135,7 @@ $active_link="cart";
 	                							<td>Subtotal:</td>
 	                							<td><i class="icon-rupee"></i><?php echo $cart_total; ?></td>
 	                						</tr><!-- End .summary-subtotal -->
-	                						<tr class="summary-shipping">
+	                						<!-- <tr class="summary-shipping">
 	                							<td>Shipping:</td>
 	                							<td>&nbsp;</td>
 	                						</tr>
@@ -145,30 +145,32 @@ $active_link="cart";
 													<div class="custom-control custom-radio">
 														<input type="radio" id="free-shipping" name="shipping" class="custom-control-input">
 														<label class="custom-control-label" for="free-shipping">Free Shipping</label>
-													</div><!-- End .custom-control -->
+													</div>
 	                							</td>
 	                							<td>$0.00</td>
-	                						</tr><!-- End .summary-shipping-row -->
+	                						</tr>
 
 	                						<tr class="summary-shipping-row">
 	                							<td>
 	                								<div class="custom-control custom-radio">
 														<input type="radio" id="standart-shipping" name="shipping" class="custom-control-input">
 														<label class="custom-control-label" for="standart-shipping">Standart:</label>
-													</div><!-- End .custom-control -->
+													</div>
 	                							</td>
 	                							<td>$10.00</td>
-	                						</tr><!-- End .summary-shipping-row -->
+	                						</tr> -->
+                                            <!-- End .summary-shipping-row -->
 
-	                						<tr class="summary-shipping-row">
+	                						<!-- <tr class="summary-shipping-row">
 	                							<td>
 	                								<div class="custom-control custom-radio">
 														<input type="radio" id="express-shipping" name="shipping" class="custom-control-input">
 														<label class="custom-control-label" for="express-shipping">Express:</label>
-													</div><!-- End .custom-control -->
+													</div>
 	                							</td>
 	                							<td>$20.00</td>
-	                						</tr><!-- End .summary-shipping-row -->
+	                						</tr> -->
+                                            <!-- End .summary-shipping-row -->
 
 	                						<tr class="summary-shipping-estimate">
 	                							<td>Estimate for Your Country<br> <a href="dashboard.html">Change address</a></td>

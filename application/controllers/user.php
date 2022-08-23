@@ -47,11 +47,11 @@ class user extends CI_Controller
 	public function manage_product_detail($param1="",$param2="",$param3="")
 	{
 
-		 $page_data['pr_id'] = 0;
+		 
 		 $product_id         = 0;
 		 if (isset($param1) && trim($param1) != "") {
 			 $product_id         = $param1;
-			 $page_data['pr_id'] = $param1;
+			
 		 }
 
 		$page_data["resultset"]=$this->db->get_where("tbl_product_new", array(
@@ -59,6 +59,7 @@ class user extends CI_Controller
         ));
         $resultset=$this->db->get("tbl_product_new");
 
+        
 
 		$this->load->view('user/product_detailview',$page_data);
 	}
@@ -397,6 +398,8 @@ class user extends CI_Controller
         }
         $url=$_SERVER["HTTP_REFERER"];
         redirect($url);
+        
+        // $this->load->view('user/index',$page_data);
     }
 	
 
@@ -469,6 +472,24 @@ class user extends CI_Controller
 
     }
 
+
+    public function manage_category_view($param1="",$param2="",$param3="")
+    {
+
+        $page_data['pr_id'] = 0;
+        $category_id         = 0;
+        if (isset($param1) && trim($param1) != "") {
+            $category_id         = $param1;
+            $page_data['pr_id'] = $param1;
+        }
+        
+       $page_data["resultset"]=$this->db->get_where("tbl_category", array(
+           'category_id' => $category_id
+       ));
+       $resultset=$this->db->get("tbl_category");
+
+        $this->load->view('user/category_view',$page_data);
+    }
 
 }
 ?>

@@ -1,6 +1,11 @@
+<?php
+    $product_row=$resultset->result();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
+    
 
 <!-- Mirrored from portotheme.com/html/molla/product-sidebar.html by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 12 Jun 2020 07:36:42 GMT -->
 <?php
@@ -51,7 +56,7 @@
                                         <div class="product-gallery">
                                             <figure class="product-main-image">
                                                 <span class="product-label label-top">Top</span>
-                                                <img id="product-zoom" src="<?php echo base_url(); ?>files/admin/product/thumb/<?php echo $result_row->product_image; ?>" alt="product image">
+                                                <img id="product-zoom" src="<?php echo base_url(); ?>files/admin/product/med/<?php echo $result_row->product_image; ?>" alt="product image">
 
                                                 <a href="#" id="btn-product-gallery" class="btn-product-gallery">
                                                     <i class="icon-arrows"></i>
@@ -66,8 +71,10 @@
                                                 $product_additional_image_row)
                                             {
                                                 ?>
+                                                
                                                 <a class="product-gallery-item" href="#" data-image="<?php echo base_url(); ?>files/admin/product/<?php echo $product_additional_image_row->product_additional_image; ?>" data-zoom-image="<?php echo base_url(); ?>files/admin/product/big/<?php echo $product_additional_image_row->product_additional_image; ?>">
-                                                    <img src="<?php echo base_url(); ?>files/admin/product/small/<?php echo $product_additional_image_row->product_additional_image; ?>" alt="product cross">
+                                                   
+                                                <img src="<?php echo base_url(); ?>files/admin/product/small/<?php echo $product_additional_image_row->product_additional_image; ?>" alt="product cross">
                                                 </a>
                                                 <?php
                                             }
@@ -109,13 +116,50 @@
                                             <div class="product-content">
                                                 <p><?php echo $result_row->product_brief_description; ?></p>
                                             </div><!-- End .product-content -->
-
+                                                
                                             <div class="details-filter-row details-row-size">
-                                                <label>Color:</label>
+                                            <?php 
+                                                $this->db->join('tbl_attribute_value','tbl_attribute_value.attribute_value_id=tbl_product_attribute_value.attribute_value_id');
+                                                $this->db->join('tbl_attribute','tbl_attribute.attribute_id=tbl_attribute_value.attribute_id');
+                                                
+                                                $attr_res=$this->db->get_where('tbl_product_attribute_value',array("tbl_product_attribute_value.product_id"=>$product_row[0]->product_id));
+
+                                                $fabric="";
+                                                $type="";
+                                                $occassion="";
+                                                $pattern="";
+                                                $color="#efe7db";
+                                                $size="small";
+                                                foreach($attr_res->result() as $attr_row)   
+                                                {
+                                                    if($attr_row->attribute_name=="Size")
+                                                    {
+                                                        $size=$attr_row->attribute_value;
+                                                    }
+                                                    if($attr_row->attribute_name=="Type")
+                                                    {
+                                                        $type=$attr_row->attribute_value;
+                                                    }
+                                                    if($attr_row->attribute_name=="Occassion")
+                                                    {   
+                                                        $occassion=$attr_row->attribute_value;
+                                                    }
+                                                    if($attr_row->attribute_name=="By Pattern")
+                                                    {
+                                                        $pattern=$attr_row->attribute_value;
+                                                    }
+                                                    if($attr_row->attribute_name=="Color")
+                                                    {
+                                                        $color=$attr_row->attribute_value;
+                                                    }
+                                                }
+                                            ?>
+                                                
+                                            <label>Color:</label>
 
                                                 <div class="product-nav product-nav-dots">
-                                                    <a href="#" class="active" style="background: #333333;"><span class="sr-only">Color name</span></a>
-                                                    <a href="#" style="background: #efe7db;"><span class="sr-only">Color name</span></a>
+                                                    <a href="#" class="active" style="<?php echo $color; ?>"><span class="sr-only">Color name</span></a>
+                                                    <!-- <a href="#" style="background: #efe7db;"><span class="sr-only">Color name</span></a> -->
                                                 </div><!-- End .product-nav -->
                                             </div><!-- End .details-filter-row -->
 
@@ -124,7 +168,7 @@
                                                 <div class="select-custom">
                                                     <select name="size" id="size" class="form-control">
                                                         <option value="#" selected="selected">Select a size</option>
-                                                        <option value="s">Small</option>
+                                                        <option value="s"><?php echo $size; ?></option>
                                                         <option value="m">Medium</option>
                                                         <option value="l">Large</option>
                                                         <option value="xl">Extra Large</option>
@@ -453,70 +497,38 @@
                             <div class="sidebar sidebar-product">
                                 <div class="widget widget-products">
                                     <h4 class="widget-title">Related Product</h4><!-- End .widget-title -->
-
+                                   
                                     <div class="products">
+                                    <?php 
+
+
+                        // $resultset=$this->db->get("tbl_product_new");
+
+                        $this->db->join('tbl_product_new','tbl_related_product.related_product_id=tbl_product_new.product_id');
+                        $related_product_res=$this->db->get_where('tbl_related_product',array('tbl_related_product.product_id'=>$product_row[0]->product_id));
+                        foreach($related_product_res->result() as $relate_product_row)
+                        {
+                            ?>
                                         <div class="product product-sm">
                                             <figure class="product-media">
-                                                <a href="product.html">
-                                                    <img src="<?php echo base_url(); ?>template/user/assets/images/products/single/sidebar/1.jpg" alt="Product image" class="product-image">
+                                                <a href="<?php echo base_url(); ?>user/manage_product_detail/<?php echo $relate_product_row->product_id; ?>/<?php echo $relate_product_row->product_seo_slug; ?>">
+                                                    <img src="<?php echo base_url(); ?>files/admin/product/med/<?php echo $relate_product_row->product_image; ?>" alt="Product image" class="product-image">
                                                 </a>
                                             </figure>
 
                                             <div class="product-body">
-                                                <h5 class="product-title"><a href="product.html">Light brown studded Wide fit wedges</a></h5><!-- End .product-title -->
+                                                <h5 class="product-title"><a href="<?php echo base_url(); ?>user/manage_product_detail/<?php echo $relate_product_row->product_id; ?>/<?php echo $relate_product_row->product_seo_slug; ?>"><?php echo $relate_product_row->product_seo_slug; ?></a></h5><!-- End .product-title -->
                                                 <div class="product-price">
-                                                    <span class="new-price">$50.00</span>
-                                                    <span class="old-price">$110.00</span>
+                                                    <!-- <span class="new-price">122</span> -->
+                                                    <span class="old-price"> <i class="icon-rupee"></i><?php echo $relate_product_row->product_selling_price;?></span>
                                                 </div><!-- End .product-price -->
                                             </div><!-- End .product-body -->
-                                        </div><!-- End .product product-sm -->
-
-                                        <div class="product product-sm">
-                                            <figure class="product-media">
-                                                <a href="product.html">
-                                                    <img src="<?php echo base_url(); ?>template/user/assets/images/products/single/sidebar/2.jpg" alt="Product image" class="product-image">
-                                                </a>
-                                            </figure>
-
-                                            <div class="product-body">
-                                                <h5 class="product-title"><a href="product.html">Yellow button front tea top</a></h5><!-- End .product-title -->
-                                                <div class="product-price">
-                                                    $56.00
-                                                </div><!-- End .product-price -->
-                                            </div><!-- End .product-body -->
-                                        </div><!-- End .product product-sm -->
-
-                                        <div class="product product-sm">
-                                            <figure class="product-media">
-                                                <a href="product.html">
-                                                    <img src="<?php echo base_url(); ?>template/user/assets/images/products/single/sidebar/3.jpg" alt="Product image" class="product-image">
-                                                </a>
-                                            </figure>
-
-                                            <div class="product-body">
-                                                <h5 class="product-title"><a href="product.html">Beige metal hoop tote bag</a></h5><!-- End .product-title -->
-                                                <div class="product-price">
-                                                    $50.00
-                                                </div><!-- End .product-price -->
-                                            </div><!-- End .product-body -->
-                                        </div><!-- End .product product-sm -->
-
-                                        <div class="product product-sm">
-                                            <figure class="product-media">
-                                                <a href="product.html">
-                                                    <img src="<?php echo base_url(); ?>template/user/assets/images/products/single/sidebar/4.jpg" alt="Product image" class="product-image">
-                                                </a>
-                                            </figure>
-
-                                            <div class="product-body">
-                                                <h5 class="product-title"><a href="product.html">Black soft RI weekend travel bag</a></h5><!-- End .product-title -->
-                                                <div class="product-price">
-                                                    $75.00
-                                                </div><!-- End .product-price -->
-                                            </div><!-- End .product-body -->
-                                        </div><!-- End .product product-sm -->
+                                        </div>
+                                        <?php
+                        }
+                        ?>
                                     </div><!-- End .products -->
-
+                          
                                     <a href="category.html" class="btn btn-outline-dark-3"><span>View More Products</span><i class="icon-long-arrow-right"></i></a>
                                 </div><!-- End .widget widget-products -->
 

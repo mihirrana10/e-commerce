@@ -149,69 +149,69 @@
                      {
                          $submenu_res=$this->db->get_where('tbl_front_menu',array('parent_id'=>$front_menu_row->front_menu_id));
                          ?>
-                  <!--<li>
-                     <a href="category.html"><?php echo $front_menu_row->front_menu_title; ?></a>
-                     
-                     <div class="megamenu megamenu-md">
-                         <div class="row no-gutters">
-                             <div class="col-md-12">
-                                 <div class="menu-col">
-                                     <div class="row">
-                                         <div class="col-md-4">
-                                             <div class="menu-title">By Fabric</div>
-                                             <ul>
-                                                 <li><a href="<?php echo base_url(); ?>user/search?category=1_2&subcat=2_1">Silk</a></li>
-                                                 <li><a href="category-2cols.html">Crepe</a></li>
-                                                 <li><a href="category.html">Pashmina</a></li>
-                                                 <li><a href="category-4cols.html">Georgette</a></li>
-                                                 <li><a href="category-market.html"><span>Chiffon</a></li>
-                                                 <li><a href="category-market.html"><span>Digital Print<span class="tip tip-new">New</span></span></a></li>
-                                             </ul>
-                     
-                                            
-                                         </div>
-                     
-                                         <div class="col-md-4">
-                                             <div class="menu-title">By Type</div>
-                                             <ul>
-                                                 <li><a href="product-category-boxed.html">Uniform Saree</a></li>
-                                                 <li><a href="product-category-fullwidth.html"><span>Uniform Salwar Suit<span class="tip tip-new">New</span></span></a></li>
-                                                 <li><a href="product-category-fullwidth.html"><span>Uniform Salwar-Saree Combo<span class="tip tip-new">New</span></span></a></li>
-                                                 <li><a href="product-category-boxed.html">Malgudi Silk</a></li>
-                                                 <li><a href="product-category-boxed.html">Kalamkari Silk</a></li>
-                                                 <li><a href="product-category-boxed.html">Angoori Crepe</a></li>
-                                                 <li><a href="product-category-boxed.html">Pashmina Silk</a></li>
-                                                 <li><a href="">C-Noor</a></li>
-                                                 <li><a href="">Celebration</a></li>
-                                             </ul>
-                                         </div>
-                                         <div class="col-md-4">
-                                             <div class="menu-title">By Occassion</div>
-                                             <ul>
-                                                 <li><a href="product-caetgory-boxed.html">Casual Wear</a></li>
-                                                 <li><a href="product-caetgory-boxed.html">Daily Wear</a></li>
-                                                 <li><a href="product-caetgory-boxed.html">Winter Wear</a></li>
-                                                 <li><a href="product-caetgory-boxed.html">Party Wear</a></li>
-                                                 <li><a href="product-caetgory-boxed.html">Uniform Wear</a></li>
-                     
+                        <!--<li>
+                           <a href="category.html"><?php echo $front_menu_row->front_menu_title; ?></a>
+                           
+                           <div class="megamenu megamenu-md">
+                              <div class="row no-gutters">
+                                 <div class="col-md-12">
+                                       <div class="menu-col">
+                                          <div class="row">
+                                             <div class="col-md-4">
+                                                   <div class="menu-title">By Fabric</div>
+                                                   <ul>
+                                                      <li><a href="<?php echo base_url(); ?>user/search?category=1_2&subcat=2_1">Silk</a></li>
+                                                      <li><a href="category-2cols.html">Crepe</a></li>
+                                                      <li><a href="category.html">Pashmina</a></li>
+                                                      <li><a href="category-4cols.html">Georgette</a></li>
+                                                      <li><a href="category-market.html"><span>Chiffon</a></li>
+                                                      <li><a href="category-market.html"><span>Digital Print<span class="tip tip-new">New</span></span></a></li>
+                                                   </ul>
+                           
                                                 
-                                             </ul>
-                                             
-                                         </div>
-                                     </div>
+                                             </div>
+                           
+                                             <div class="col-md-4">
+                                                   <div class="menu-title">By Type</div>
+                                                   <ul>
+                                                      <li><a href="product-category-boxed.html">Uniform Saree</a></li>
+                                                      <li><a href="product-category-fullwidth.html"><span>Uniform Salwar Suit<span class="tip tip-new">New</span></span></a></li>
+                                                      <li><a href="product-category-fullwidth.html"><span>Uniform Salwar-Saree Combo<span class="tip tip-new">New</span></span></a></li>
+                                                      <li><a href="product-category-boxed.html">Malgudi Silk</a></li>
+                                                      <li><a href="product-category-boxed.html">Kalamkari Silk</a></li>
+                                                      <li><a href="product-category-boxed.html">Angoori Crepe</a></li>
+                                                      <li><a href="product-category-boxed.html">Pashmina Silk</a></li>
+                                                      <li><a href="">C-Noor</a></li>
+                                                      <li><a href="">Celebration</a></li>
+                                                   </ul>
+                                             </div>
+                                             <div class="col-md-4">
+                                                   <div class="menu-title">By Occassion</div>
+                                                   <ul>
+                                                      <li><a href="product-caetgory-boxed.html">Casual Wear</a></li>
+                                                      <li><a href="product-caetgory-boxed.html">Daily Wear</a></li>
+                                                      <li><a href="product-caetgory-boxed.html">Winter Wear</a></li>
+                                                      <li><a href="product-caetgory-boxed.html">Party Wear</a></li>
+                                                      <li><a href="product-caetgory-boxed.html">Uniform Wear</a></li>
+                           
+                                                      
+                                                   </ul>
+                                                   
+                                             </div>
+                                          </div>
+                                       </div>
                                  </div>
-                             </div>
-                         </div>
-                     </div>
-                     </li>-->
-                  <!--<li>
-                     <a href="product.html"><?php echo str_replace(" ", "&nbsp;", 
-                        $front_menu_row->front_menu_title) ; ?></a>
-                     </li>-->
-                  <?php
-                     if($submenu_res->num_rows()>0)
-                     {
-                         ?>
+                              </div>
+                           </div>
+                           </li>-->
+                        <!--<li>
+                           <a href="product.html"><?php echo str_replace(" ", "&nbsp;", 
+                              $front_menu_row->front_menu_title) ; ?></a>
+                           </li>-->
+                     <?php
+                        if($submenu_res->num_rows()>0)
+                        {
+                           ?>
                   <li>
                      <a href="#"><?php echo $front_menu_row->front_menu_title; ?></a>
                      <?php
