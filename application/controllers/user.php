@@ -44,22 +44,28 @@ class user extends CI_Controller
 	{
 		$this->load->view('user/faqview');
 	}
-	public function manage_product_detail($param1="",$param2="",$param3="")
+	public function manage_product_detail($product_slug="",$param1="")
 	{
 
 		 
-		 $product_id         = 0;
-		 if (isset($param1) && trim($param1) != "") {
-			 $product_id         = $param1;
+		//  $product_id         = 0;
+		//  if (isset($param1) && trim($param1) != "") {
+		// 	 $product_id         = $param1;
 			
-		 }
+		//  }
 
-		$page_data["resultset"]=$this->db->get_where("tbl_product_new", array(
-            'product_id' => $product_id
-        ));
-        $resultset=$this->db->get("tbl_product_new");
-
+		// $page_data["resultset"]=$this->db->get_where("tbl_product_new", array(
+        //     'product_id' => $product_id
+        // ));
         
+        // print_r($page_data["resultset"]);
+        
+        $page_data["resultset"]=$this->db->get_where('tbl_product_new',array('product_seo_slug'=>$product_slug));
+        // $page_data['item']=$resultset->result();
+
+        // echo "<pre>";
+        //     print_r($page_data["resultset"]);
+        // echo "</pre>";
 
 		$this->load->view('user/product_detailview',$page_data);
 	}
@@ -473,20 +479,32 @@ class user extends CI_Controller
     }
 
 
-    public function manage_category_view($param1="",$param2="",$param3="")
+    public function manage_category_view($category_slug="")
     {
 
-        $page_data['pr_id'] = 0;
-        $category_id         = 0;
-        if (isset($param1) && trim($param1) != "") {
-            $category_id         = $param1;
-            $page_data['pr_id'] = $param1;
-        }
+    //     $page_data['pr_id'] = 0;
+    //     $category_id         = 0;
+    //     if (isset($param1) && trim($param1) != "") {
+    //         $category_id         = $param1;
+    //         $page_data['pr_id'] = $param1;
+    //     }
         
-       $page_data["resultset"]=$this->db->get_where("tbl_category", array(
-           'category_id' => $category_id
-       ));
-       $resultset=$this->db->get("tbl_category");
+    //    $page_data["resultset"]=$this->db->get_where("tbl_category", array(
+    //        'category_id' => $category_id
+    //    ));
+    //    $resultset=$this->db->get("tbl_category");
+
+    $page_data["resultset"]=$this->db->get_where('tbl_category',array('category_seo_slug'=>$category_slug));
+
+
+    
+
+    
+
+    // echo "<pre>";
+    //     print_r($page_data["resultset"]);
+    // echo "</pre>";    
+
 
         $this->load->view('user/category_view',$page_data);
     }
