@@ -64,13 +64,13 @@ $active_link="cart";
                                                     <td class="product-col">
                                                         <div class="product">
                                                             <figure class="product-media">
-                                                                <a href="<?php echo base_url(); ?>user/manage_product_detail/<?php echo $view_cart_row->product_id; ?>/<?php echo $view_cart_row->product_seo_slug; ?>">
-                                                                    <img src="<?php echo base_url(); ?>files/admin/product/thumb/<?php echo $view_cart_row->product_image; ?>" alt="Product image">
+                                                                <a href="<?php echo base_url(); ?>user/manage_product_detail/<?php echo strtolower($view_cart_row->product_seo_slug); ?>">
+                                                                    <img src="<?php echo base_url(); ?>files/admin/product/thumb/<?php echo strtolower($view_cart_row->product_image); ?>" alt="Product image">
                                                                 </a>
                                                             </figure>
 
                                                             <h3 class="product-title">
-                                                                <a href="<?php echo base_url(); ?>user/manage_product_detail/<?php echo $view_cart_row->product_id; ?>/<?php echo $view_cart_row->product_seo_slug; ?>"><?php echo $view_cart_row->product_name; ?></a>
+                                                                <a href="<?php echo base_url(); ?>user/manage_product_detail/<?php echo strtolower($view_cart_row->product_seo_slug); ?>"><?php echo $view_cart_row->product_name; ?></a>
                                                             </h3><!-- End .product-title -->
                                                         </div><!-- End .product -->
                                                     </td>

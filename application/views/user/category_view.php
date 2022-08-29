@@ -1,3 +1,11 @@
+<?php
+
+$category_row=$resultset->result();
+
+$cat_id=$category_row[0]->category_id;
+// print_r($category_row);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -86,17 +94,16 @@
 
                             	// $resultset = $this->db->get_where('tbl_product_new',array('category_id'=>'product_id'));
 
-                            	 $this->db->join('tbl_product_new','tbl_product_category.category_id=tbl_product_new.product_id');
-                                 $resultset=$this->db->get_where('tbl_product_category');
-                              
-                              
+                            	 $this->db->join('tbl_product_new','tbl_product_category.product_id=tbl_product_new.product_id');
+                                 $resultset=$this->db->get_where('tbl_product_category',array('tbl_product_category.category_id'=>$cat_id));
+
                                     foreach($resultset->result() as $result_row)
                                     {
                                 ?>
                                 <div class="col-6 col-md-4 col-lg-3 ">
                                     <div class="product product-11 text-center">
                                         <figure class="product-media">
-                                        <a href="<?php echo base_url(); ?>user/manage_product_detail/<?php echo $result_row->product_id; ?>/<?php echo $result_row->product_seo_slug; ?>">
+                                        <a href="<?php echo base_url(); ?>user/manage_product_detail/<?php echo strtolower($result_row->product_seo_slug); ?>">
                                                 <img src="<?php echo base_url(); ?>files/admin/product/med/<?php echo $result_row->product_image; ?>" alt="Product image" class="product-image">
                                                 <?php 
                                             $product_additional_image_res=$this->db->get_where('tbl_product_additional_image',array('product_id'=>$result_row->product_id));

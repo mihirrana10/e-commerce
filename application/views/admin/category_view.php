@@ -17,12 +17,27 @@
                                     <input type="hidden" class="form-control" id="txt_parent_id" name="txt_parent_id" value="<?php echo $cat_id; ?>">
                                         <div class="form-group">
                                                     <label>Category</label>
-                                                    <input class="form-control" id="txt_category_name" name="txt_category_name">
+                                                    <input class="form-control" id="txt_category_name" name="txt_category_name" onblur="get_slug(this.value);">
                                         </div>
                                         <div class="form-group">
                                                     <label>Description</label>
                                                     <textarea class="form-control" id="txt_category_description" name="txt_category_description" rows="3"></textarea>
                                         </div>
+                                        <script type="text/javascript">
+                                            function get_slug(category_name)
+                                            {
+                                                var slug;
+                                                slug = category_name.replace(/ /g, "-");
+                                                document.getElementById('txt_category_seo_slug').value=slug;
+                                            }
+
+                                            function get_slug2(category_name)
+                                            {
+                                                var slug;
+                                                slug = category_name.replace(/ /g, "-");
+                                                document.getElementById('txt_category_seo_slug2').value=slug;
+                                            }
+                                            </script>
                                         <div class="form-group">
                                                     <label>SEO Slug</label>
                                                     <input class="form-control" id="txt_category_seo_slug" name="txt_category_seo_slug">
@@ -245,7 +260,9 @@
                             ?>
                                 <tr>
                                 <td><?php echo $i; ?></td>
-                                    <td><a href='<?php echo base_url(); ?>admin/manage_category/<?php echo $result_row->category_id; ?>'><?php echo $result_row->category_name; ?></a></td>
+                                    <td><a href='<?php echo base_url(); ?>admin/manage_category/<?php echo $result_row->category_id; ?>'>
+                                    <?php echo $result_row->category_name; ?></a></td>
+                                    
                                     <!--<td><?php echo $result_row->category_description; ?></td>
                                     <td><?php echo $result_row->category_seo_slug; ?></td>
                                     <td><?php echo $result_row->category_meta_tag_title; ?></td>

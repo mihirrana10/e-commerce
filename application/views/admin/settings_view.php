@@ -143,7 +143,19 @@
                                 <td>Minimum Total Piece Qty</td>
                                 <td><?php echo $row->settings_total_min_qty; ?></td>
                             </tr>
-                            
+                            <tr>
+                                <td>Popup Iamge</td>
+                                <td><img src="<?php echo base_url().'files/admin/popup/'.$row->settings_popup_iamge; ?>"></td>
+
+                            </tr>
+                            <tr>
+                                <td>Popup Content </td>
+                                <td><?php echo $row->settings_popup_content; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Popup Content </td>
+                                <td><?php echo $row->settings_popup_big_txt_content; ?></td>
+                            </tr>
                             
                             
 

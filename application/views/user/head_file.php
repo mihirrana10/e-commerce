@@ -26,6 +26,10 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>template/user/assets/css/plugins/jquery.countdown.css">
     <!-- Main CSS File -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>template/user/assets/css/style.css">
+  
+
+
+
     <link rel="stylesheet" href="<?php echo base_url(); ?>template/user/assets/css/skins/skin-demo-2.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>template/user/assets/css/demos/demo-2.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>template/user/assets/css/plugins/nouislider/nouislider.css">

@@ -509,5 +509,22 @@ class user extends CI_Controller
         $this->load->view('user/category_view',$page_data);
     }
 
+    public function manage_popup_email($param1="",$param2="",$param3="")
+    {
+            if($param1=="create")
+                {
+                    $data["subscriber_email"]=$this->input->post("txt_subscriber_email");
+                    $this->db->insert("tbl_subscriber",$data);
+                    redirect(base_url()."user");
+                }
+       
+    }
+
+    public function product360()
+    {
+       $this->load->view('user/360product');
+    }
+
+
 }
 ?>

@@ -127,7 +127,7 @@
                      <div class="product">
                         <div class="product-cart-details">
                            <h4 class="product-title">
-                              <a href="<?php echo base_url(); ?>user/manage_product_detail/<?php echo $cart_row->product_id; ?>/<?php echo $cart_row->product_seo_slug; ?>">
+                              <a href="<?php echo base_url(); ?>user/manage_product_detail/<?php echo strtolower($cart_row->product_seo_slug); ?>">
                               <?php 
                                  echo $cart_row->product_name;
                                  ?>
@@ -140,7 +140,7 @@
                         </div>
                         <!-- End .product-cart-details -->
                         <figure class="product-image-container">
-                           <a href="<?php echo base_url(); ?>user/manage_product_detail/<?php echo $cart_row->product_id; ?>/<?php echo $cart_row->product_seo_slug; ?>" class="product-image">
+                           <a href="<?php echo base_url(); ?>user/manage_product_detail/<?php echo strtolower($cart_row->product_seo_slug); ?>" class="product-image">
                            <img src="<?php echo base_url(); ?>files/admin/product/thumb/<?php echo $cart_row->product_image; ?>" alt="product">
                            </a>
                         </figure>

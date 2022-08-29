@@ -1539,6 +1539,25 @@ class ajax extends CI_Controller
                		                ?>
                                 </select>
 	                        </div>
+							<div class="form-group">
+                                <label>Image Upload Files</label>
+                                    <?php 
+                                    if(isset($image_msg))
+                                    {
+                                        echo $image_msg;
+                                    }
+                                    ?>
+                                    <form role="form" method="post" action="<?php echo base_url(); ?>admin/upload_image_zip" enctype="multipart/form-data">
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <label>Image Zip File</label>
+                                                <input type="file" id="zip_file" name="zip_file">
+                                            </div>
+                                            <button type="submit" class="btn btn-success">Submit</button>
+                                            <button type="reset" class="btn btn-default">Reset</button>
+                                        </div>
+                                    </form>
+                         </div>
 	                    <button type="submit" class="btn btn-success">Submit</button>
 	                    <button type="reset" class="btn btn-default">Reset</button>
 	                </div>
@@ -3313,6 +3332,26 @@ class ajax extends CI_Controller
 							  	<label >Show Badges</label>
 							  	  	<input id="inlineCheckbox1"  id="chk_show_badges" name="chk_show_badges" type="checkbox"  <?php if(trim($row->settings_show_badges)=="1"){echo " checked='checked'";}  ?> value="1">
 								  
+							</div>
+
+							<div class="form-group">
+							  <label>Popup Iamge </label>
+							  	<br>
+							  	<img height='100px' src="<?php echo base_url().'files/admin/popup/'.$row->settings_popup_iamge; ?>" >
+								<input type="file" id="settings_popup_iamge" name="settings_popup_iamge"  >
+							</div>	
+
+							<div class="form-group">
+							  <label>Popup Content</label>
+							  	<br>
+								  <input type="text" id="txt_settings_popup_content" name="txt_settings_popup_content" class="form-control" value="<?php echo $row->settings_popup_content; ?>" >
+
+							</div>
+							<div class="form-group">
+							  <label>Popup BigText Content</label>
+							  	<br>
+								  <input type="text" id="txt_settings_popup_big_txt_content" name="txt_settings_popup_big_txt_content" class="form-control" value="<?php echo $row->settings_popup_content; ?>" >
+
 							</div>
 
 							

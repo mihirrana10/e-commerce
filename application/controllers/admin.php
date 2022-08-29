@@ -1065,7 +1065,7 @@ class admin extends CI_Controller
 
     public function upload_image_zip()
     {
-        $data['volume_id']       = $this->input->post('txt_volume_id');
+        $data['product_id']       = $this->input->post('txt_product_id');
         $newname                 = $_FILES["zip_file"]["name"];
         $newname                 = $this->generate_random_name($newname);
         $config['file_name']     = $newname;
@@ -4744,7 +4744,7 @@ class admin extends CI_Controller
                 
                 //$newname_favicon=rand(100000,10000000)."_".$_FILES["img_favicon"]["name"];
                 $config['file_name']     = $newname_favicon;
-                $config['upload_path']   = 'files/admin/logo/';
+                $config['upload_path']   = 'files/admin/popup/';
                 $config['allowed_types'] = 'gif|jpg|png|bmp|jpeg|ico';
                 $config['max_width']     = '102400';
                 $config['max_height']    = '76800';
@@ -4772,6 +4772,29 @@ class admin extends CI_Controller
             
             $data['settings_single_min_qty'] = $this->input->post('txt_single_min_qty');
             $data['settings_total_min_qty '] = $this->input->post('txt_total_min_qty');
+            $data['settings_popup_content '] = $this->input->post('txt_settings_popup_content');
+            $data['settings_popup_big_txt_content '] = $this->input->post('txt_settings_popup_big_txt_content');
+
+           
+
+            if($_FILES["settings_popup_iamge"]["error"]==0)
+            {
+                $newname = $_FILES["settings_popup_iamge"]["name"];
+                $newname = $this->generate_random_name($newname);
+                
+                $config["file_name"]=$newname;
+                $config["upload_path"]="files/admin/popup";
+                    $config["allowed_types"]="gif|jpg|png|bmp|jpeg|ico|jpeg";
+                $config["max_width"]="102400";
+                $config["max_height"]="76800";
+                $config["max_size"]=1024*1024*2;
+                $this->load->library("upload");
+                $this->upload->initialize($config);
+                $this->upload->do_upload("settings_popup_iamge");
+
+                $data["settings_popup_iamge"]=$newname;
+                    $this->smart_resize_image("files/admin/popup".$newname,262,200,true, "files/admin/popup".$newname,false,false);
+            }
             //$data['unit_name']=$this->input->post('txt_unit');
             $this->db->update("tbl_settings", $data);
             

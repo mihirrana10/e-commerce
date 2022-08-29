@@ -41,6 +41,8 @@
 $route['default_controller'] = "user";
 $route['404_override'] = '';
 
+$route['default_controller'] = 'Unzip';
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

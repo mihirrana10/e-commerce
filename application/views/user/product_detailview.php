@@ -1,5 +1,7 @@
 <?php
+   
     $product_row=$resultset->result();
+
 
 ?>
 
@@ -340,156 +342,51 @@
                                         }
                                     }
                                 }'>
-                                <div class="product product-7 text-center">
-                                    <figure class="product-media">
-                                        <span class="product-label label-new">New</span>
-                                        <a href="product.html">
-                                            <img src="<?php echo base_url(); ?>template/user/assets/images/products/product-4.jpg" alt="Product image" class="product-image">
-                                        </a>
+                                <?php 
 
-                                        <div class="product-action-vertical">
-                                            <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                            <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
-                                            <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
-                                        </div><!-- End .product-action-vertical -->
 
-                                        <div class="product-action">
-                                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                        </div><!-- End .product-action -->
-                                    </figure><!-- End .product-media -->
+// $resultset=$this->db->get("tbl_product_new");
 
-                                    <div class="product-body">
-                                        <div class="product-cat">
-                                            <a href="#">Women</a>
-                                        </div><!-- End .product-cat -->
-                                        <h3 class="product-title"><a href="product.html">Brown paperbag waist pencil skirt</a></h3><!-- End .product-title -->
-                                        <div class="product-price">
-                                            $60.00
-                                        </div><!-- End .product-price -->
-                                        <div class="ratings-container">
-                                            <div class="ratings">
-                                                <div class="ratings-val" style="width: 20%;"></div><!-- End .ratings-val -->
-                                            </div><!-- End .ratings -->
-                                            <span class="ratings-text">( 2 Reviews )</span>
-                                        </div><!-- End .rating-container -->
+$this->db->join('tbl_product_new','tbl_related_product.related_product_id=tbl_product_new.product_id');
+$related_product_res=$this->db->get_where('tbl_related_product',array('tbl_related_product.product_id'=>$product_row[0]->product_id));
+foreach($related_product_res->result() as $relate_product_row)
+{
+    ?>
+                            <div class="product product-11 text-center">
+                                <figure class="product-media">
+                                <a href="<?php echo base_url(); ?>user/manage_product_detail/<?php echo   $relate_product_row->product_seo_slug; ?>">
+                                                <img src="<?php echo base_url(); ?>files/admin/product/med/<?php echo $relate_product_row->product_image; ?>" alt="Product image" class="product-image">
+                                                <?php 
+                                            $product_additional_image_res=$this->db->get_where('tbl_product_additional_image',array('product_id'=>$relate_product_row->product_id));
+                                            foreach($product_additional_image_res->result() as 
+                                                $product_additional_image_row)
+                                            {
+                                                ?>
+                                                <img src="<?php echo base_url(); ?>files/admin/product/med/<?php echo $product_additional_image_row->product_additional_image; ?>" class="product-image-hover">
+                                                <?php
+                                            }
+                                                ?>
+                                            </a>
 
-                                        <div class="product-nav product-nav-dots">
-                                            <a href="#" class="active" style="background: #cc9966;"><span class="sr-only">Color name</span></a>
-                                            <a href="#" style="background: #7fc5ed;"><span class="sr-only">Color name</span></a>
-                                            <a href="#" style="background: #e8c97a;"><span class="sr-only">Color name</span></a>
-                                        </div><!-- End .product-nav -->
-                                    </div><!-- End .product-body -->
-                                </div><!-- End .product -->
+                                    <div class="product-action-vertical">
+                                        <a href="<?php echo base_url(); ?>user/wishlist_add/<?php echo $relate_product_row->product_id; ?>" class="btn-product-icon btn-wishlist"><span>add to wishlist</span></a>
+                                    </div><!-- End .product-action-vertical -->
+                                </figure><!-- End .product-media -->
 
-                                <div class="product product-7 text-center">
-                                    <figure class="product-media">
-                                        <span class="product-label label-out">Out of Stock</span>
-                                        <a href="product.html">
-                                            <img src="<?php echo base_url(); ?>template/user/assets/images/products/product-6.jpg" alt="Product image" class="product-image">
-                                        </a>
+                                <div class="product-body">
+                                    <h3 class="product-title"><a href="product.html"><?php echo $relate_product_row->product_seo_slug; ?></a></h3><!-- End .product-title -->
+                                    <div class="product-price">
+                                    <i class="icon-rupee"></i><?php echo $relate_product_row->product_selling_price;?>
+                                    </div><!-- End .product-price -->
+                                </div><!-- End .product-body -->
+                                <div class="product-action">
+                                    <a href="<?php echo base_url(); ?>user/add_to_cart/<?php echo $relate_product_row->product_id; ?>" class="btn-product btn-cart"><span>add to cart</span></a>
+                                </div><!-- End .product-action -->
+                            </div>
+                            <?php
+}
+                            ?>
 
-                                        <div class="product-action-vertical">
-                                            <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                            <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
-                                            <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
-                                        </div><!-- End .product-action-vertical -->
-
-                                        <div class="product-action">
-                                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                        </div><!-- End .product-action -->
-                                    </figure><!-- End .product-media -->
-
-                                    <div class="product-body">
-                                        <div class="product-cat">
-                                            <a href="#">Jackets</a>
-                                        </div><!-- End .product-cat -->
-                                        <h3 class="product-title"><a href="product.html">Khaki utility boiler jumpsuit</a></h3><!-- End .product-title -->
-                                        <div class="product-price">
-                                            <span class="out-price">$120.00</span>
-                                        </div><!-- End .product-price -->
-                                        <div class="ratings-container">
-                                            <div class="ratings">
-                                                <div class="ratings-val" style="width: 80%;"></div><!-- End .ratings-val -->
-                                            </div><!-- End .ratings -->
-                                            <span class="ratings-text">( 6 Reviews )</span>
-                                        </div><!-- End .rating-container -->
-                                    </div><!-- End .product-body -->
-                                </div><!-- End .product -->
-
-                                <div class="product product-7 text-center">
-                                    <figure class="product-media">
-                                        <span class="product-label label-top">Top</span>
-                                        <a href="product.html">
-                                            <img src="<?php echo base_url(); ?>template/user/assets/images/products/product-11.jpg" alt="Product image" class="product-image">
-                                        </a>
-
-                                        <div class="product-action-vertical">
-                                            <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                            <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
-                                            <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
-                                        </div><!-- End .product-action-vertical -->
-
-                                        <div class="product-action">
-                                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                        </div><!-- End .product-action -->
-                                    </figure><!-- End .product-media -->
-
-                                    <div class="product-body">
-                                        <div class="product-cat">
-                                            <a href="#">Shoes</a>
-                                        </div><!-- End .product-cat -->
-                                        <h3 class="product-title"><a href="product.html">Light brown studded Wide fit wedges</a></h3><!-- End .product-title -->
-                                        <div class="product-price">
-                                            $110.00
-                                        </div><!-- End .product-price -->
-                                        <div class="ratings-container">
-                                            <div class="ratings">
-                                                <div class="ratings-val" style="width: 80%;"></div><!-- End .ratings-val -->
-                                            </div><!-- End .ratings -->
-                                            <span class="ratings-text">( 1 Reviews )</span>
-                                        </div><!-- End .rating-container -->
-
-                                        <div class="product-nav product-nav-dots">
-                                            <a href="#" class="active" style="background: #8b513d;"><span class="sr-only">Color name</span></a>
-                                            <a href="#" style="background: #333333;"><span class="sr-only">Color name</span></a>
-                                            <a href="#" style="background: #d2b99a;"><span class="sr-only">Color name</span></a>
-                                        </div><!-- End .product-nav -->
-                                    </div><!-- End .product-body -->
-                                </div><!-- End .product -->
-
-                                <div class="product product-7 text-center">
-                                    <figure class="product-media">
-                                        <a href="product.html">
-                                            <img src="<?php echo base_url(); ?>template/user/assets/images/products/product-10.jpg" alt="Product image" class="product-image">
-                                        </a>
-
-                                        <div class="product-action-vertical">
-                                            <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                            <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
-                                            <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
-                                        </div><!-- End .product-action-vertical -->
-
-                                        <div class="product-action">
-                                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                        </div><!-- End .product-action -->
-                                    </figure><!-- End .product-media -->
-
-                                    <div class="product-body">
-                                        <div class="product-cat">
-                                            <a href="#">Jumpers</a>
-                                        </div><!-- End .product-cat -->
-                                        <h3 class="product-title"><a href="product.html">Yellow button front tea top</a></h3><!-- End .product-title -->
-                                        <div class="product-price">
-                                            $56.00
-                                        </div><!-- End .product-price -->
-                                        <div class="ratings-container">
-                                            <div class="ratings">
-                                                <div class="ratings-val" style="width: 0%;"></div><!-- End .ratings-val -->
-                                            </div><!-- End .ratings -->
-                                            <span class="ratings-text">( 0 Reviews )</span>
-                                        </div><!-- End .rating-container -->
-                                    </div><!-- End .product-body -->
-                                </div><!-- End .product -->
                             </div><!-- End .owl-carousel -->
                         </div><!-- End .col-lg-9 -->
 
@@ -511,13 +408,13 @@
                             ?>
                                         <div class="product product-sm">
                                             <figure class="product-media">
-                                                <a href="<?php echo base_url(); ?>user/manage_product_detail/<?php echo $relate_product_row->product_id; ?>/<?php echo $relate_product_row->product_seo_slug; ?>">
+                                                <a href="<?php echo base_url(); ?>user/manage_product_detail/<?php echo   $relate_product_row->product_seo_slug; ?>">
                                                     <img src="<?php echo base_url(); ?>files/admin/product/med/<?php echo $relate_product_row->product_image; ?>" alt="Product image" class="product-image">
                                                 </a>
                                             </figure>
 
                                             <div class="product-body">
-                                                <h5 class="product-title"><a href="<?php echo base_url(); ?>user/manage_product_detail/<?php echo $relate_product_row->product_id; ?>/<?php echo $relate_product_row->product_seo_slug; ?>"><?php echo $relate_product_row->product_seo_slug; ?></a></h5><!-- End .product-title -->
+                                                <h5 class="product-title"><a href="<?php echo base_url(); ?>user/manage_product_detail/<?php echo   $relate_product_row->product_seo_slug; ?>"><?php echo $relate_product_row->product_seo_slug; ?></a></h5><!-- End .product-title -->
                                                 <div class="product-price">
                                                     <!-- <span class="new-price">122</span> -->
                                                     <span class="old-price"> <i class="icon-rupee"></i><?php echo $relate_product_row->product_selling_price;?></span>

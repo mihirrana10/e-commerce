@@ -57,7 +57,7 @@
                                     foreach($resultsets->result() as $result_row)
                                     {
                                 ?>
-                <a href="<?php echo base_url(); ?>user/manage_category_view/<?php echo $result_row->category_id; ?>/<?php echo $result_row->category_name; ?>" class="brand">
+                <a href="<?php echo base_url(); ?>user/manage_category_view/<?php echo strtolower($result_row->category_seo_slug); ?>" class="brand">
                     <img src="<?php echo base_url(); ?>files/admin/category/<?php echo $result_row->category_image; ?>" alt="Brand Name">
                 </a>
                 
@@ -165,14 +165,16 @@
 
                                     $page_data["product_res"]=$this->db->get("tbl_product_new");
                                     $this->db->order_by('product_id','desc');
-                                    $product_res=$this->db->get("tbl_product_new");
+                                    // $product_res=$this->db->get_where('tbl_product_new',array('tbl_product_new.product_id'=>$product_row[0]->product_id));
+
+                                    $product_res=$this->db->get_where("tbl_product_new");
 
                                     foreach($product_res->result() as $product_row)
                                     {
                                         ?>
                             <div class="product product-11 text-center">
                                 <figure class="product-media">
-                                    <a href="<?php echo base_url(); ?>user/manage_product_detail/<?php echo $product_row->product_id; ?>/<?php echo $product_row->product_seo_slug; ?>">
+                                    <a href="<?php echo base_url(); ?>user/manage_product_detail/<?php echo strtolower($product_row->product_seo_slug); ?>">
                                         <img src="<?php echo base_url(); ?>files/admin/product/med/<?php echo $product_row->product_image; ?>" alt="Product image" class="product-image">
                                         
                                         <?php 
@@ -525,7 +527,7 @@
                                 <div class="col-6 col-md-4 col-lg-3 ">
                                     <div class="product product-11 text-center">
                                         <figure class="product-media">
-                                        <a href="<?php echo base_url(); ?>user/manage_product_detail/<?php echo $result_row->product_id; ?>/<?php echo $result_row->product_seo_slug; ?>">
+                                        <a href="<?php echo base_url(); ?>user/manage_product_detail/<?php echo strtolower($result_row->product_seo_slug); ?>">
                                                 <img src="<?php echo base_url(); ?>files/admin/product/med/<?php echo $result_row->product_image; ?>" alt="Product image" class="product-image">
                                                 <?php 
                                             $product_additional_image_res=$this->db->get_where('tbl_product_additional_image',array('product_id'=>$result_row->product_id));
@@ -569,7 +571,8 @@
                         <!-- End .products -->
                     </div><!-- .End .tab-pane -->
                     
-                </div><!-- End .tab-content -->
+                </div>
+                <!-- End .tab-content -->
             </div><!-- End .container -->
 
             <div class="container">
@@ -908,36 +911,9 @@
         </div><!-- End .modal-dialog -->
     </div><!-- End .modal -->
     
-    <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
-        <div class="row justify-content-center">
-            <div class="col-10">
-                <div class="row no-gutters bg-white newsletter-popup-content">
-                    <div class="col-xl-3-5col col-lg-7 banner-content-wrap">
-                        <div class="banner-content text-center">
-                            
-                            <h2 class="banner-title">get <span>25<light>%</light></span> off</h2>
-                            <p>Subscribe to the James Allen newsletter to receive timely updates from your favorite products.</p>
-                            <form action="#">
-                                <div class="input-group input-group-round">
-                                    <input type="email" class="form-control form-control-white" placeholder="Your Email Address" aria-label="Email Adress" required>
-                                    <div class="input-group-append">
-                                        <button class="btn" type="submit"><span>go</span></button>
-                                    </div><!-- .End .input-group-append -->
-                                </div><!-- .End .input-group -->
-                            </form>
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="register-policy-2" required>
-                                <label class="custom-control-label" for="register-policy-2">Do not show this popup again</label>
-                            </div><!-- End .custom-checkbox -->
-                        </div>
-                    </div>
-                    <div class="col-xl-2-5col col-lg-5 ">
-                        <img src="https://storage.pixteller.com/designs/designs-images/2020-12-21/05/diamond-ring-jewelry-sale-banner-1-5fe0c462110c6.png" class="newsletter-img" alt="newsletter">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+ <?php
+        include_once('subscribe_popup.php')
+ ?>
        
     <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
