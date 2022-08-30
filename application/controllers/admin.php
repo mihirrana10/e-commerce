@@ -1066,10 +1066,14 @@ class admin extends CI_Controller
     public function upload_image_zip()
     {
         $data['product_id']       = $this->input->post('txt_product_id');
+
+        print_r($data['product_id']);
+        // exit;
+
         $newname                 = $_FILES["zip_file"]["name"];
-        $newname                 = $this->generate_random_name($newname);
+        // $newname                 = $this->generate_random_name($newname);
         $config['file_name']     = $newname;
-        $config['upload_path']   = 'files/admin/product_zip/';
+        $config['upload_path']   = 'files/admin/product_zip/' ;
         $config['allowed_types'] = 'zip';
         $config['max_width']     = '102400';
         $config['max_height']    = '76800';
@@ -5019,7 +5023,7 @@ class admin extends CI_Controller
     
     public function manage_unzip()
     {
-        $data['volume_id']       = $this->input->post('txt_volume_id');
+        $data['product_id']       = $this->input->post('txt_product_id');
         $newname                 = $_FILES["zip_file"]["name"];
         $newname                 = $this->generate_random_name($newname);
         $config['file_name']     = $newname;

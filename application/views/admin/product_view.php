@@ -293,7 +293,13 @@
                                                     </select>
                                         </div>
                                         
-                                             <div class="form-group">
+                                         
+
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                    <button type="reset" class="btn btn-default">Reset</button>
+                                </div>
+                            </form>
+                            <div class="form-group">
                                                     <label>Image Upload Files</label>
                                                         <?php 
                                                         if(isset($image_msg))
@@ -312,11 +318,6 @@
                                                             </div>
                                                         </form> 
                                             </div>
-
-                                    <button type="submit" class="btn btn-success">Submit</button>
-                                    <button type="reset" class="btn btn-default">Reset</button>
-                                </div>
-                            </form>
                         </div></div>
                     
                 </div>
