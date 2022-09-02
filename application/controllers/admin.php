@@ -845,7 +845,40 @@ class admin extends CI_Controller
     {
         if($param1=="create")
         {
-            $data["order_invoice_number"]=$this->input->post("txt_order_invoice_number");$data["order_date"]=$this->input->post("txt_order_date");$data["order_status"]=$this->input->post("rdo_order_status");$data["order_amount"]=$this->input->post("txt_order_amount");$data["order_coupon_id"]=$this->input->post("");$data["order_coupon_discount_amount"]=$this->input->post("");$data["order_shipping_amount"]=$this->input->post("");$data["order_final_amount"]=$this->input->post("");$data["order_billing_name"]=$this->input->post("");$data["order_billing_company_name"]=$this->input->post("");$data["order_billing_address_line1"]=$this->input->post("");$data["order_billing_address_line2"]=$this->input->post("");$data["order_billing_country_id"]=$this->input->post("");$data["order_billing_state_id"]=$this->input->post("");$data["order_billing_city_id"]=$this->input->post("");$data["order_billing_pincode"]=$this->input->post("");$data["order_billing_email"]=$this->input->post("");$data["order_billing_phone_number"]=$this->input->post("");$data["order_billing_shipping_address_same"]=$this->input->post("");$data["order_shipping_name"]=$this->input->post("");$data["order_shipping_company_name"]=$this->input->post("");$data["order_shipping_address_line1"]=$this->input->post("");$data["order_shipping_address_line2"]=$this->input->post("");$data["order_shipping_country_id"]=$this->input->post("");$data["order_shipping_state_id"]=$this->input->post("");$data["order_shipping_city_id"]=$this->input->post("");$data["order_shipping_pincode"]=$this->input->post("");$data["order_shipping_email"]=$this->input->post("");$data["order_shipping_phone_number"]=$this->input->post("");$data["order_courier_receipt_id"]=$this->input->post("");$data["order_is_returned"]=$this->input->post("");$data["order_payment_type"]=$this->input->post("");$data["order_notes"]=$this->input->post("");$data["customer_id"]=$this->input->post("");
+            $data["order_invoice_number"]=$this->input->post("txt_order_invoice_number");
+            $data["order_date"]=$this->input->post("txt_order_date");
+            $data["order_status"]=$this->input->post("rdo_order_status");
+            $data["order_amount"]=$this->input->post("txt_order_amount");
+            $data["order_coupon_id"]=$this->input->post("");
+            $data["order_coupon_discount_amount"]=$this->input->post("");
+            $data["order_shipping_amount"]=$this->input->post("");
+            $data["order_final_amount"]=$this->input->post("");
+            $data["order_billing_name"]=$this->input->post("");
+            $data["order_billing_company_name"]=$this->input->post("");
+            $data["order_billing_address_line1"]=$this->input->post("");
+            $data["order_billing_address_line2"]=$this->input->post("");
+            $data["order_billing_country_id"]=$this->input->post("");
+            $data["order_billing_state_id"]=$this->input->post("");
+            $data["order_billing_city_id"]=$this->input->post("");
+            $data["order_billing_pincode"]=$this->input->post("");
+            $data["order_billing_email"]=$this->input->post("");
+            $data["order_billing_phone_number"]=$this->input->post("");
+            $data["order_billing_shipping_address_same"]=$this->input->post("");
+            $data["order_shipping_name"]=$this->input->post("");
+            $data["order_shipping_company_name"]=$this->input->post("");
+            $data["order_shipping_address_line1"]=$this->input->post("");
+            $data["order_shipping_address_line2"]=$this->input->post("");
+            $data["order_shipping_country_id"]=$this->input->post("");
+            $data["order_shipping_state_id"]=$this->input->post("");
+            $data["order_shipping_city_id"]=$this->input->post("");
+            $data["order_shipping_pincode"]=$this->input->post("");
+            $data["order_shipping_email"]=$this->input->post("");
+            $data["order_shipping_phone_number"]=$this->input->post("");
+            $data["order_courier_receipt_id"]=$this->input->post("");
+            $data["order_is_returned"]=$this->input->post("");
+            $data["order_payment_type"]=$this->input->post("");
+            $data["order_notes"]=$this->input->post("");
+            $data["customer_id"]=$this->input->post("");
             $this->db->insert("tbl_order",$data);
             redirect(base_url()."admin/manage_order");
         }
@@ -1067,13 +1100,13 @@ class admin extends CI_Controller
     {
         $data['product_id']       = $this->input->post('txt_product_id');
 
-        print_r($data['product_id']);
+        // print_r($data['product_id']);
         // exit;
 
         $newname                 = $_FILES["zip_file"]["name"];
-        // $newname                 = $this->generate_random_name($newname);
+        $newname                 = $this->generate_random_name($newname);
         $config['file_name']     = $newname;
-        $config['upload_path']   = 'files/admin/product_zip/' ;
+        $config['upload_path']   = 'files/admin/product_zip' ;
         $config['allowed_types'] = 'zip';
         $config['max_width']     = '102400';
         $config['max_height']    = '76800';

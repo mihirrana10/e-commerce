@@ -22,7 +22,8 @@ class login extends CI_Controller
     				foreach($query->result() as $row)
     				{
     					$_SESSION["user_id"]=$row->user_id;
-    					
+						$_SESSION["user_name"]=$row->user_name;
+						
 
     				 	// $this->session->set_userdata("user_id",$row->user_id);
     					// $this->session->set_userdata("user_name",$row->user_name);
@@ -57,7 +58,7 @@ class login extends CI_Controller
 		unset($_SESSION["user_id"]);
 		session_destroy();
 		//redirect(base_url().'login/login_check');
-		redirect(base_url().'user');
+		redirect(base_url().'login');
 	}
 }
 ?>

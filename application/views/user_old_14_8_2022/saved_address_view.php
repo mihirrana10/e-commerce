@@ -67,7 +67,7 @@ $customer_row=$customer_res->result();
                                                         $this->db->join('tbl_city','tbl_city.city_id=tbl_address.address_city_id');
 
                                                         //$this->db->join('tbl_country','tbl_country.country_id=address_country_id');
-                                                        $saved_addr_res=$this->db->get_where('tbl_address',array('tbl_address.customer_id'=>$_SESSION["customer_id"]));
+                                                        $saved_addr_res=$this->db->get_where('tbl_address',array('tbl_address.user_id'=>$_SESSION["user_id"]));
                                                         foreach($saved_addr_res->result() as $saved_addr_row)
                                                         {
                                                           ?>
@@ -115,100 +115,100 @@ $customer_row=$customer_res->result();
                                                         -->
                                                                                                     
 
-                                            <script type="text/javascript">
-                                                    var controller2 = "user_ajax/get_address";
-                                                    var base_url = "http://localhost/vimla_adminlte/";
+                                                <script type="text/javascript">
+                                                        var controller2 = "user_ajax/get_address";
+                                                        var base_url = "http://localhost/vimla_adminlte/";
 
-                                                    function getXMLHTTP() 
-                                                    { //fuction to return the xml http object
-                                                        var xmlhttp=false;  
-                                                        try{
-                                                            xmlhttp=new XMLHttpRequest();
-                                                        }
-                                                        catch(e)    {       
-                                                            try{            
-                                                                xmlhttp= new ActiveXObject("Microsoft.XMLHTTP");
+                                                        function getXMLHTTP() 
+                                                        { //fuction to return the xml http object
+                                                            var xmlhttp=false;  
+                                                            try{
+                                                                xmlhttp=new XMLHttpRequest();
                                                             }
-                                                            catch(e){
-                                                                try{
-                                                                xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+                                                            catch(e)    {       
+                                                                try{            
+                                                                    xmlhttp= new ActiveXObject("Microsoft.XMLHTTP");
                                                                 }
                                                                 catch(e){
-                                                                    xmlhttp=false;
+                                                                    try{
+                                                                    xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+                                                                    }
+                                                                    catch(e){
+                                                                        xmlhttp=false;
+                                                                    }
                                                                 }
                                                             }
+                                                                
+                                                            return xmlhttp;
                                                         }
                                                             
-                                                        return xmlhttp;
-                                                    }
-                                                           
-                                                    function select_address(addr_id)
-                                                    {       
-                                                        var strURL=base_url+controller2+"/"+addr_id;
-                                                        //alert(strURL);
-                                                        var req = getXMLHTTP();
-                                                        if (req) {
-                                                            req.onreadystatechange = function() {
-                                                                if (req.readyState == 4) {
-                                                                    // only if "OK"
-                                                                    if (req.status == 200) {
-                                                                    //alert(req.responseText);                      
-                                                                        
-                                                                        document.getElementById("txt_selected_address_id").value=addr_id;
-
-                                                                        //alert(req.responseText);
-
-                                                                        var json_array = JSON.parse(req.responseText);
-                                                                        /*
-                                                                        alert(obj.address_person_name);
-                                                                        */
-                                                                        for (var i=0; i< json_array.length; i++)
-                                                                        {
-                                                                            //alert(json_array[i].address_person_name);
-
-                                                                            var res = json_array[i].address_person_name.split(" ");
-                                                                            document.getElementById('txt_first_name').value=res[0];
-                                                                            document.getElementById('txt_last_name').value=res[1];
-
-                                                                            document.getElementById('txt_company_name').value=json_array[i].address_company_name;
-
-                                                                            document.getElementById('txt_address_line1').value=json_array[i].address_line1;
-
-                                                                            document.getElementById('txt_address_line2').value=json_array[i].address_line2;
-
-                                                                            document.getElementById('cmb_country').value=json_array[i].address_country_id;
-
-                                                                            document.getElementById('cmb_state').value=json_array[i].address_state_id;
-
-                                                                            document.getElementById('cmb_city').value=json_array[i].address_city_id;
-
-                                                                            document.getElementById('txt_pincode').value=json_array[i].address_pincode;
-
-                                                                            document.getElementById('txt_email').value=json_array[i].address_email;
-
-                                                                            document.getElementById('txt_phone').value=json_array[i].address_phone_number;
-
-
-
-
-
+                                                        function select_address(addr_id)
+                                                        {       
+                                                            var strURL=base_url+controller2+"/"+addr_id;
+                                                            //alert(strURL);
+                                                            var req = getXMLHTTP();
+                                                            if (req) {
+                                                                req.onreadystatechange = function() {
+                                                                    if (req.readyState == 4) {
+                                                                        // only if "OK"
+                                                                        if (req.status == 200) {
+                                                                        //alert(req.responseText);                      
                                                                             
+                                                                            document.getElementById("txt_selected_address_id").value=addr_id;
+
+                                                                            //alert(req.responseText);
+
+                                                                            var json_array = JSON.parse(req.responseText);
+                                                                            /*
+                                                                            alert(obj.address_person_name);
+                                                                            */
+                                                                            for (var i=0; i< json_array.length; i++)
+                                                                            {
+                                                                                //alert(json_array[i].address_person_name);
+
+                                                                                var res = json_array[i].address_person_name.split(" ");
+                                                                                document.getElementById('txt_first_name').value=res[0];
+                                                                                document.getElementById('txt_last_name').value=res[1];
+
+                                                                                document.getElementById('txt_company_name').value=json_array[i].address_company_name;
+
+                                                                                document.getElementById('txt_address_line1').value=json_array[i].address_line1;
+
+                                                                                document.getElementById('txt_address_line2').value=json_array[i].address_line2;
+
+                                                                                document.getElementById('cmb_country').value=json_array[i].address_country_id;
+
+                                                                                document.getElementById('cmb_state').value=json_array[i].address_state_id;
+
+                                                                                document.getElementById('cmb_city').value=json_array[i].address_city_id;
+
+                                                                                document.getElementById('txt_pincode').value=json_array[i].address_pincode;
+
+                                                                                document.getElementById('txt_email').value=json_array[i].address_email;
+
+                                                                                document.getElementById('txt_phone').value=json_array[i].address_phone_number;
+
+
+
+
+
+                                                                                
+                                                                            }
+                                                                            
+                                                                                
+                                                                        } else {
+                                                                            alert("There was a problem while using XMLHTTP:\n" + req.statusText);
                                                                         }
-                                                                        
-                                                                            
-                                                                    } else {
-                                                                        alert("There was a problem while using XMLHTTP:\n" + req.statusText);
-                                                                    }
-                                                                }               
-                                                            }           
-                                                            req.open("GET", strURL, true);
-                                                            req.send(null);
-                                                            
+                                                                    }               
+                                                                }           
+                                                                req.open("GET", strURL, true);
+                                                                req.send(null);
+                                                                
+                                                            }
                                                         }
-                                                    }
 
-                                                    
-                                            </script>
+                                                        
+                                                </script>
                                             
                                         </div>
                                         <form action="<?php echo base_url(); ?>user/saved_address/update" class="contact-form mb-3" method="post">

@@ -2,6 +2,16 @@
 session_start();
 class user extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        // $_SESSION["per_page"] = "10";
+        if (!isset($_SESSION["user_email"])) {
+            redirect(base_url() . 'login');
+        }
+    }
+   
+    
     public function index()
 	{
         $page_data["resultset"]=$this->db->get("tbl_product_new");
@@ -15,6 +25,42 @@ class user extends CI_Controller
 	{
 		$this->load->view('user/cartview');
 	}
+
+    public function order_details($order_id)
+    {
+        $page_data['order_id']=$order_id;
+      
+
+        $this->load->view("user/order_details",$page_data);
+    }
+    public function magazine($catalogue_id)
+    {
+        $page_data['catalogue_id']=$catalogue_id;
+        $this->load->view('user/myaccountview',$page_data);
+    }
+    public function cancel_order($order_id)
+    {
+        $ord_data['order_is_returned']='Applied';
+
+        $this->db->where('order_id',$order_id);
+        $this->db->update('tbl_order',$ord_data);
+
+        //$page_data['msg']='<div class="alert alert-warning" role="alert"  style="width:100%"><i class="icon-close"></i> Invalid Coupon Code</div>';
+
+
+        //order email start
+        $ordr_res = $this->db->get_where('tbl_order',array('order_id'=>$order_id));
+        $ordr_row = $ordr_res->result();
+
+        // $this->send_email_phpmailer_cancel_order(6,$ordr_row[0]->order_billing_email,$ordr_row[0]->order_billing_name,$order_id);
+        //order email end
+
+
+
+
+        redirect(base_url().'user/order_details/'.$order_id);
+    }
+
     public function manage_checkout()
 	{
 		$this->load->view('user/checkoutview');
@@ -22,9 +68,9 @@ class user extends CI_Controller
 	public function manage_wishlist()
 	{
         // $page_data['active_id']='wishlist';
-        if(!isset($_SESSION["customer_id"]))
+        if(!isset($_SESSION["user_id"]))
         {
-            // redirect(base_url().'login');
+            redirect(base_url().'login');
         }
 		$this->load->view('user/wishlistview');
 	}
@@ -75,10 +121,12 @@ class user extends CI_Controller
 	{
 		if($param1=="create")
 		{
+            $data["user_name"]=$this->input->post("txt_user_name");
 			$data["user_email"]=$this->input->post("txt_user_email");
 			$data["user_password"]=$this->input->post("txt_user_password");
+			
 			$this->db->insert("tbl_user",$data);
-			redirect(base_url()."user/index");
+			redirect(base_url()."login");  
 		}
 		$this->load->view('user/login_view');
 	}
@@ -377,7 +425,7 @@ class user extends CI_Controller
 
 	public function remove_wishlist($product_id)
     {
-        $query="delete from tbl_wishlist where customer_id='".$_SESSION["customer_id"]."' and product_id='".$product_id."' ";
+        $query="delete from tbl_wishlist where customer_id='".$_SESSION["user_id"]."' and product_id='".$product_id."' ";
         
         $this->db->query($query);
         $url=$_SERVER["HTTP_REFERER"];
@@ -386,11 +434,11 @@ class user extends CI_Controller
 	
 	 public function wishlist_add($id)
     {
-        if(isset($_SESSION["customer_id"]))
+        if(isset($_SESSION["user_id"]))
         {
-            $data['customer_id']=$_SESSION["customer_id"];
+            $data['customer_id']=$_SESSION["user_id"];
             
-            $resultset=$this->db->get_where('tbl_wishlist',array("customer_id"=>$_SESSION["customer_id"],"product_id"=>$id));
+            $resultset=$this->db->get_where('tbl_wishlist',array("customer_id"=>$_SESSION["user_id"],"product_id"=>$id));
             if($resultset->num_rows==0)
             {
                 $data['product_id']=$id;
@@ -523,6 +571,122 @@ class user extends CI_Controller
     public function product360()
     {
        $this->load->view('user/360product');
+    }
+
+    public function saved_address($param1="")
+    {
+        if(!isset($_SESSION["user_id"]))
+        {
+            redirect(base_url().'user/register');
+        }
+        $page_data['msg']="";
+
+        if($param1=="update")
+        {
+          $save_up_data['address_person_name'] = $this->input->post('txt_first_name')." ".$this->input->post('txt_last_name');
+          $save_up_data['address_company_name'] = $this->input->post('txt_company_name');
+          $save_up_data['address_line1'] = $this->input->post('txt_address_line1');
+          $save_up_data['address_line2'] = $this->input->post('txt_address_line2');
+          $save_up_data['address_country_id'] = $this->input->post('cmb_country');
+          $save_up_data['address_state_id'] = $this->input->post('cmb_state');
+          $save_up_data['address_city_id'] = $this->input->post('cmb_city');
+          $save_up_data['address_pincode'] = $this->input->post('txt_pincode');
+          $save_up_data['address_email'] = $this->input->post('txt_email');
+          $save_up_data['address_phone_number'] = $this->input->post('txt_phone');
+
+          $this->db->where('address_id',$this->input->post('txt_selected_address_id'));
+          $this->db->update('tbl_address',$save_up_data);
+
+          $page_data['msg']='
+                <div class="row">
+                        <div class="col-lg-12">
+                            <div class="alert alert-success alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <i class="fa fa-info-circle"></i>  <strong>Your Profile Updated Successfully..!!</strong>
+                            </div>
+                        </div>
+                </div>';
+
+          
+        }
+
+        $page_data['customer_res']=$this->db->get_where('tbl_customer',array("customer_id"=>$_SESSION["user_id"]));
+
+        $this->load->view('user/myaccountview',$page_data);
+    }
+
+    public function change_password($action="")
+    {
+        $page_data=array();
+
+        $page_data['active_id']='change_password';
+        if($action=="update")
+        {
+            $old_pwd=$this->input->post('txt_old_pwd');
+            $new_pwd=$this->input->post('txt_pwd');
+            $cpwd=$this->input->post('txt_cpwd');
+
+            if($new_pwd==$cpwd)
+            {
+                $old_res=$this->db->get_where('tbl_user',array('user_id'=>$_SESSION["user_id"]));
+                $old_row=$old_res->result();
+                if($old_row[0]->user_password==$old_pwd)
+                {
+                    $update_pass_data['user_password']=$new_pwd;
+                    $this->db->where('user_id',$_SESSION["user_id"]);
+                    $this->db->update('tbl_user',$update_pass_data);
+
+                    $page_data['msgs']='<div class="alert alert-success" role="alert" ><i class="icon-check"></i> Your Password changed successfully</div>';
+                }
+                else
+                {
+                    $page_data['msgs']='<div class="alert alert-danger" role="alert"><i class="icon-close"></i> Invalid old password</div>';
+                }
+            }
+            else
+            {
+                $page_data['msgs']='<div class="alert alert-danger" role="alert" ><i class="icon-close"></i> Password and Confirm Password not matched</div>';
+            }
+
+           /* $page_data['msg']='<div class="alert alert-success" role="alert" style="width:30%"><i class="icon-check"></i> Your Password changed successfully</div>';
+           */
+        }
+        $this->load->view('user/myaccountview',$page_data);
+    }
+
+    public function edit_profile($param1="")
+    {
+        if(!isset($_SESSION["user_id"]))
+        {
+            redirect(base_url().'user/register');
+        }
+        $page_data['msg']="";
+        if($param1=="do_update")
+        {
+            if($this->input->post('txt_user_name')!="" || $this->input->post('txt_user_mobile_number')!="" ||
+             $this->input->post('txt_user_address')!=""  )
+            {
+                $update_data['user_name']=$this->input->post('txt_user_name');
+                $update_data['user_mobile_number']=$this->input->post('txt_user_mobile_number');
+                $update_data['user_address']=$this->input->post('txt_user_address');
+
+                $this->db->where('user_id',$_SESSION["user_id"]);
+                $this->db->update('tbl_user',$update_data);
+
+                $page_data['msg']='
+                <div class="row">
+                        <div class="col-lg-12">
+                            <div class="alert alert-success alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <i class="fa fa-info-circle"></i>  <strong>Your Profile Updated Successfully..!!</strong>
+                            </div>
+                        </div>
+                </div>';
+            }
+        }
+        $page_data['user_resultset']=$this->db->get_where('tbl_user',array("user_id"=>$_SESSION["user_id"]));
+
+        $this->load->view('user/myaccountview',$page_data);
     }
 
 

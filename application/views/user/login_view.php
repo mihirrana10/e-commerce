@@ -15,15 +15,15 @@
     <!-- End .header -->
 
         <main class="main">
-            <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
+            <!-- <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
                 <div class="container">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Pages</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Login</li>
                     </ol>
-                </div><!-- End .container -->
-            </nav><!-- End .breadcrumb-nav -->
+                </div>
+            </nav> -->
 
             <div class="login-page bg-image pt-8 pb-8 pt-md-12 pb-md-12 pt-lg-17 pb-lg-17" style="background-image: url('<?php echo base_url(); ?>template/user/assets/images/backgrounds/login-bg.jpg')">
             	<div class="container">
@@ -84,7 +84,11 @@
 							    </div><!-- .End .tab-pane -->
 							    <div class="tab-pane fade show active" id="register-2" role="tabpanel" aria-labelledby="register-tab-2">
                                 <form role="form" method="post" action="<?php echo base_url(); ?>user/manage_user/create" enctype="multipart/form-data">
-							    		<div class="form-group">
+                                        <div class="form-group">
+							    			<label for="register-name-2">Your Name *</label>
+							    			<input type="text" class="form-control" id="register-name-2" name="txt_user_name" required>
+							    		</div>
+                                         <div class="form-group">
 							    			<label for="register-email-2">Your email address *</label>
 							    			<input type="email" class="form-control" id="register-email-2" name="txt_user_email" required>
 							    		</div><!-- End .form-group -->

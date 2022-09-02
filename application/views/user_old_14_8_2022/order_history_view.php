@@ -47,12 +47,12 @@
                         <!-- End .col-lg-3 -->
                         <div class="col-md-10 col-lg-10">
                            <?php 
-                           $this->db->order_by('order_id','desc');
+                               $this->db->order_by('order_id','desc');
                               $order_history_res = $this->db->get_where('tbl_order',array('customer_id'=>$_SESSION["customer_id"]));
                               $cnt=1;
                               foreach($order_history_res->result() as $order_history_row)
                               {
-                              ?>
+                           ?>
                                  <div class="row">
                                     <div class="col-md-12">
                                        <div class="accordion" id="accordion-<?php echo $cnt; ?>">

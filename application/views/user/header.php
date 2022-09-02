@@ -6,11 +6,8 @@
    ?>
 <?php 
    $this->db->join('tbl_product_new','tbl_wishlist.product_id=tbl_product_new.product_id');
-                                   $wishlist_new_res=$this->db->get_where('tbl_wishlist',array('customer_id'=>"customer_id"));
-                                   // $product_res=$this->db->get_where("tbl_product_new");
-                                   // print_r($wishlist_new_res);
-                                   // echo '<pre>',print_r($res),'</pre>';
-                                   // exit;
+                                   $wishlist_new_res=$this->db->get_where('tbl_wishlist',array('customer_id'=>$_SESSION["user_id"]));
+                                  
    $total_products=$wishlist_new_res->num_rows();
    ?>
 <header class="header header-2 header-intro-clearance">
@@ -348,7 +345,11 @@
                      <!-- .End .tab-pane -->
                      <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
                         <form role="form" method="post" action="<?php echo base_url(); ?>user/manage_user/create" enctype="multipart/form-data">
-                           <div class="form-group">
+                        <div class="form-group">
+                              <label for="register-name">Your Name *</label>
+                              <input type="text" class="form-control" id="register-email" name="txt_user_name" required>
+                           </div>   
+                        <div class="form-group">
                               <label for="register-email">Your email address *</label>
                               <input type="email" class="form-control" id="register-email" name="txt_user_email" required>
                            </div>

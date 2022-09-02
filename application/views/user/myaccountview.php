@@ -52,7 +52,7 @@
 								        <a class="nav-link" id="tab-account-link" data-toggle="tab" href="#tab-account" role="tab" aria-controls="tab-account" aria-selected="false">Account Details</a>
 								    </li>
 								    <li class="nav-item">
-								        <a class="nav-link" href="#">Sign Out</a>
+								        <a class="nav-link" href="<?php echo base_url(); ?>login/log_out">Sign Out</a>
 								    </li>
 								</ul>
 	                		</aside><!-- End .col-lg-3 -->
@@ -60,18 +60,178 @@
 	                		<div class="col-md-8 col-lg-9">
 	                			<div class="tab-content">
 								    <div class="tab-pane fade show active" id="tab-dashboard" role="tabpanel" aria-labelledby="tab-dashboard-link">
-								    	<p>Hello <span class="font-weight-normal text-dark">User</span> (not <span class="font-weight-normal text-dark">User</span>? <a href="#">Log out</a>) 
+								    	<p>Hello <span class="font-weight-normal text-dark"><?php echo $_SESSION['user_name']; ?>
+                                       </span> (not <span class="font-weight-normal text-dark"><?php echo $_SESSION['user_name']; ?></span>? <a href="<?php echo base_url(); ?>login/log_out">Log out</a>) 
 								    	<br>
 								    	From your account dashboard you can view your <a href="#tab-orders" class="tab-trigger-link link-underline">recent orders</a>, manage your <a href="#tab-address" class="tab-trigger-link">shipping and billing addresses</a>, and <a href="#tab-account" class="tab-trigger-link">edit your password and account details</a>.</p>
 								    </div><!-- .End .tab-pane -->
 
-								    <div class="tab-pane fade" id="tab-orders" role="tabpanel" aria-labelledby="tab-orders-link">
-								    	<p>No order has been made yet.</p>
-								    	<a href="category.html" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="icon-long-arrow-right"></i></a>
+								    <div class="tab-pane fade " id="tab-orders" role="tabpanel" aria-labelledby="tab-orders-link">
+                                    <center>
+                                                                <?php 
+                            /*$this->db->join('tbl_product_new','tbl_wishlist.product_id=tbl_product_new.product_id');
+                            $wishlist_res=$this->db->get_where('tbl_wishlist',array('customer_id'=>$_SESSION["customer_id"]));
+                            */
+                           
+
+                            //$this->db->join('tbl_order_details','tbl_order.order_id=tbl_order_details.order_id');
+
+                            //$this->db->join('tbl_product_new','tbl_order_details.product_id=tbl_product_new.product_id');,array('customer_id'=>$_SESSION["user_id"])
+
+                            $order_history_res = $this->db->get_where('tbl_order');
+
+                            foreach($order_history_res->result() as $order_history_row)
+                            {
+                                ?>
+                                <table class="table table-responsive" style="border: 1px solid #333;padding:30px;border-radius: 10px">
+                                    <tbody >
+                                        <tr>
+                                            <td >
+                                                <table>
+                                                    <tr>
+                                                        <td style="width: 40%"><strong>ORDER PLACED</strong><br><?php echo $order_history_row->order_date; ?>
+                                                        </td>
+                                                        <td style="width: 20%"><strong>TOTAL</strong><br><i class="icon-rupee"></i><?php echo $order_history_row->order_final_amount; ?>
+                                                        </td>
+                                                        <td style="width: 40%"><strong>ORDER # <?php echo $order_history_row->order_invoice_number; ?></strong><br><a href='<?php echo base_url(); ?>user/order_details/<?php echo $order_history_row->order_id; ?>'>Order Details</a> | 
+                                                            <a href=#>Invoice</a>
+                                                        </td>
+                                                    </tr>
+
+
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <table class="table table-wishlist table-mobile">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Product</th>
+                                                            <th>Price</th>
+                                                            <!--<th>Stock Status</th>
+                                                            <th></th>
+                                                            <th></th>-->
+                                                        </tr>
+                                                        <tbody>
+                                                        <?php 
+                                                        $this->db->join('tbl_product_new','tbl_order_details.product_id=tbl_product_new.product_id');
+                                                        $order_detail_res=$this->db->get_where('tbl_order_details',array('order_id'=>$order_history_row->order_id));
+                                                        foreach($order_detail_res->result() as $order_detail_row)
+                                                        {
+                                                        ?>
+                                                        <tr>
+                                                            <td class="product-col">
+                                                                <div class="product">
+                                                                    <figure class="product-media">
+                                                                        <a href="#">
+                                                                            <img src="<?php echo base_url(); ?>files/admin/product/thumb/<?php echo $order_detail_row->product_image; ?>" alt="Product image">
+                                                                        </a>
+                                                                    </figure>
+
+                                                                    <h3 class="product-title">
+                                                                        <a href="#"><?php echo $order_detail_row->product_name; ?></a>
+                                                                        <br>
+                                                                        Unit Price : <i class="icon-rupee"></i><?php echo $order_detail_row->product_selling_price; ?>
+                                                                         X Quantity : <i class="icon-rupee"></i><?php echo $order_detail_row->product_qty; ?>
+                                                                    </h3><!-- End .product-title -->
+                                                                </div><!-- End .product -->
+                                                            </td>
+                                                            <td class="price-col"><i class="icon-rupee"></i><?php echo $order_detail_row->product_selling_price*$order_detail_row->product_qty; ?></td>
+                                                            
+                                                            <!--<td class="remove-col"><a href="<?php echo base_url(); ?>user/remove_wishlist/<?php echo $order_detail_row->product_id; ?>"><button class="btn-remove"><i class="icon-close"></i></button></a>
+                                                            </td>-->
+                                                        </tr>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                        </tbody>
+                                                    </thead>
+                                                </table>
+                                            </td>
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <?php
+                            }
+                            ?>
+                                </center>
+								    	<a href="<?php echo base_url().'user/index'?>" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="icon-long-arrow-right"></i></a>
 								    </div><!-- .End .tab-pane -->
 
 								    <div class="tab-pane fade" id="tab-downloads" role="tabpanel" aria-labelledby="tab-downloads-link">
-								    	<p>No downloads available yet.</p>
+                                    <div class="page-content">
+                <div class="cart">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                    
+                                    <table class="table table-cart table-mobile">
+                                        <thead>
+                                            <tr>
+                                                <th>Catalogue</th>
+                                                <th>Download</th>
+                                                <th>View</th>
+                                                
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <?php 
+                                            $this->db->order_by('catalogue_sort_order','asc');
+                                            $catalogue_res=$this->db->get_where('tbl_catalogue',array('catalogue_status'=>'Active'));
+
+                                            foreach($catalogue_res->result() as $catalogue_row)
+                                            {
+                                                ?>
+                                                <tr>
+                                                    <td class="product-col" style="width: 50%">
+                                                        <div class="product">
+                                                            <figure class="product-media" style="max-width: 160px;">
+                                                                <a href="#">
+                                                                    <img src="<?php echo base_url(); ?>files/admin/catalogue/thumb/<?php echo $catalogue_row->catalogue_image; ?>" height="100px" alt="Product image">
+                                                                </a>
+                                                            </figure>
+
+                                                            <h3 class="product-title">
+                                                                <a href="#"><?php echo $catalogue_row->catalogue_name; ?></a>
+                                                            </h3><!-- End .product-title -->
+                                                        </div><!-- End .product -->
+                                                    </td>
+                                                    <td class="product_-col" style="width: 20%">
+
+                                                        <div class="input-group-append">
+                                                            <a href="<?php echo base_url(); ?>files/admin/catalogue/<?php echo $catalogue_row->catalogue_pdf; ?>" target="_blank" class="btn btn-outline-primary-2"><i class="icon-arrow-down"></i> Download</a>
+                                                        </div>
+                                                        <!--<a href=#><i class="icon icon-arrow-down" style="font-size:30px;font-weight: bold"></i></a>-->
+                                                    </td>
+                                                    <td class="product_-col" style="width:20%">
+                                                        <div class="input-group-append">
+                                                            <a href="<?php echo base_url(); ?>user/magazine/<?php echo $catalogue_row->catalogue_id; ?>" class="btn btn-outline-primary-2" target="_blank"><i class="icon-eye"></i> View</a>
+                                                        </div>
+                                                        <!--<a href=#><i class="icon icon-eye" style="font-size:30px;font-weight: bold"></i></a>-->
+                                                    </td>
+                                                   
+                                                </tr>
+                                                <?php
+
+                                                
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table><!-- End .table table-wishlist -->
+                                    
+                                
+                                
+                            </div><!-- End .col-lg-9 -->
+                            
+                        </div><!-- End .row -->
+                    </div><!-- End .container -->
+                </div><!-- End .cart -->
+            </div>
+                                    <p>No downloads available yet.</p>
 								    	<a href="category.html" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="icon-long-arrow-right"></i></a>
 								    </div><!-- .End .tab-pane -->
 
@@ -82,15 +242,247 @@
 								    		<div class="col-lg-6">
 								    			<div class="card card-dashboard">
 								    				<div class="card-body">
-								    					<h3 class="card-title">Billing Address</h3><!-- End .card-title -->
+                                                    <?php 
+                                                        $this->db->join('tbl_country','tbl_country.country_id=tbl_address.address_country_id');
+                                                        $this->db->join('tbl_state','tbl_state.state_id=tbl_address.address_state_id');
+                                                        $this->db->join('tbl_city','tbl_city.city_id=tbl_address.address_city_id');
+                                                        $saved_addr_res=$this->db->get_where('tbl_address',array('tbl_address.customer_id'=>$_SESSION["user_id"]));
+                                                        foreach($saved_addr_res->result() as $saved_addr_row)
+                                                        {
+                                                          ?>
+								    					<h3 class="card-title">Billing Address</h3>
 
-														<p>User Name<br>
-														User Company<br>
-														John str<br>
-														New York, NY 10001<br>
-														1-234-987-6543<br>
-														yourmail@mail.com<br>
-														<a href="#">Edit <i class="icon-edit"></i></a></p>
+														<div class=" col-md-5 col-lg-5 summary" id="div_1">
+                                                              <p><strong><?php echo $saved_addr_row->address_person_name; ?></strong></p>
+                                                              <p><?php echo $saved_addr_row->address_company_name; ?></p>
+                                                              <p><?php echo $saved_addr_row->address_line1.", ".$saved_addr_row->address_line2.", ".$saved_addr_row->address_pincode; ?></p>
+                                                              
+                                                              <p><?php echo $saved_addr_row->city_name.", ".$saved_addr_row->state_name.", ".$saved_addr_row->country_name; ?></p>
+                                                              <p><?php echo $saved_addr_row->address_email; ?></p>
+                                                              <p><?php echo $saved_addr_row->address_phone_number; ?></p>
+                                                              
+                                                              
+                                                              <label class="btn btn-outline-primary-2" style="margin-top:10px">
+                                                                  <input type="radio"  name="cmb_selected_address" value="<?php echo $saved_addr_row->address_id; ?>" onclick="select_address(<?php echo $saved_addr_row->address_id; ?>)" style="margin-right:10px"> Edit Address
+                                                              </label>
+                                                          </div>
+                                                          
+                                                          <?php
+                                                        }
+                                                        ?>
+                                                        <script type="text/javascript">
+                                                    var controller2 = "user_ajax/get_address";
+                                                    var base_url = "http://localhost/vimla_adminlte/";
+
+                                                    function getXMLHTTP() 
+                                                    { //fuction to return the xml http object
+                                                        var xmlhttp=false;  
+                                                        try{
+                                                            xmlhttp=new XMLHttpRequest();
+                                                        }
+                                                        catch(e)    {       
+                                                            try{            
+                                                                xmlhttp= new ActiveXObject("Microsoft.XMLHTTP");
+                                                            }
+                                                            catch(e){
+                                                                try{
+                                                                xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+                                                                }
+                                                                catch(e){
+                                                                    xmlhttp=false;
+                                                                }
+                                                            }
+                                                        }
+                                                            
+                                                        return xmlhttp;
+                                                    }
+                                                           
+                                                    function select_address(addr_id)
+                                                    {       
+                                                        var strURL=base_url+controller2+"/"+addr_id;
+                                                        //alert(strURL);
+                                                        var req = getXMLHTTP();
+                                                        if (req) {
+                                                            req.onreadystatechange = function() {
+                                                                if (req.readyState == 4) {
+                                                                    // only if "OK"
+                                                                    if (req.status == 200) {
+                                                                    //alert(req.responseText);                      
+                                                                        
+                                                                        document.getElementById("txt_selected_address_id").value=addr_id;
+
+                                                                        //alert(req.responseText);
+
+                                                                        var json_array = JSON.parse(req.responseText);
+                                                                        /*
+                                                                        alert(obj.address_person_name);
+                                                                        */
+                                                                        for (var i=0; i< json_array.length; i++)
+                                                                        {
+                                                                            //alert(json_array[i].address_person_name);
+
+                                                                            var res = json_array[i].address_person_name.split(" ");
+                                                                            document.getElementById('txt_first_name').value=res[0];
+                                                                            document.getElementById('txt_last_name').value=res[1];
+
+                                                                            document.getElementById('txt_company_name').value=json_array[i].address_company_name;
+
+                                                                            document.getElementById('txt_address_line1').value=json_array[i].address_line1;
+
+                                                                            document.getElementById('txt_address_line2').value=json_array[i].address_line2;
+
+                                                                            document.getElementById('cmb_country').value=json_array[i].address_country_id;
+
+                                                                            document.getElementById('cmb_state').value=json_array[i].address_state_id;
+
+                                                                            document.getElementById('cmb_city').value=json_array[i].address_city_id;
+
+                                                                            document.getElementById('txt_pincode').value=json_array[i].address_pincode;
+
+                                                                            document.getElementById('txt_email').value=json_array[i].address_email;
+
+                                                                            document.getElementById('txt_phone').value=json_array[i].address_phone_number;
+
+
+
+
+
+                                                                            
+                                                                        }
+                                                                        
+                                                                            
+                                                                    } else {
+                                                                        alert("There was a problem while using XMLHTTP:\n" + req.statusText);
+                                                                    }
+                                                                }               
+                                                            }           
+                                                            req.open("GET", strURL, true);
+                                                            req.send(null);
+                                                            
+                                                        }
+                                                    }
+
+                                                    
+                                            </script>
+                                            <form action="<?php echo base_url(); ?>user/saved_address/update" class="contact-form mb-3" method="post">
+                                          <?php 
+                                          if(isset($msg))
+                                          {
+                                            echo $msg;
+                                          }
+                                          ?>
+                                            <input type="hidden" id="txt_selected_address_id" name="txt_selected_address_id">
+                                            <div class="row">
+                                            <div class="col-sm-6">
+                                                <label>First Name *</label>
+                                                <input type="text" class="form-control" id="txt_first_name" name="txt_first_name" required>
+                                            </div><!-- End .col-sm-6 -->
+
+                                            <div class="col-sm-6">
+                                                <label>Last Name *</label>
+                                                <input type="text" class="form-control" id="txt_last_name" name="txt_last_name" required>
+                                            </div><!-- End .col-sm-6 -->
+                                        </div><!-- End .row -->
+
+                                        <label>Company Name (Optional)</label>
+                                        <input type="text" class="form-control" id="txt_company_name" name="txt_company_name">
+
+                                        <label>Country *</label>
+                                        <!--<input type="text" class="form-control" required>-->
+                                        <select class="form-control" id="cmb_country" name="cmb_country" onchange="get_state(this.value)">
+                                                <?php 
+                                                $country_res=$this->db->get_where('tbl_country');
+                                                foreach($country_res->result() as $country_row)
+                                                {
+                                                    ?>
+                                                    <option 
+                                                    value="<?php echo $country_row->country_id; ?>"
+                                                    <?php 
+                                                    if($country_row->country_name=="India")
+                                                    {
+                                                        echo "selected='selected'";
+                                                    }
+                                                    ?>
+                                                    >
+                                                    <?php echo $country_row->country_name; ?>
+                                                    </option>
+                                                    <?php
+                                                }
+                                                ?>
+                                        </select>
+
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <label>State / County *</label>
+                                                <!--<input type="text" class="form-control" required>-->
+                                                <select class="form-control" id="cmb_state" name="cmb_state" onchange="get_city(this.value);">
+                                                <?php 
+                                                    $this->db->join('tbl_country','tbl_state.country_id=tbl_country.country_id');
+                                                    $state_res=$this->db->get_where('tbl_state',array('tbl_country.country_name'=>'India'));
+                                                    foreach($state_res->result() as $state_row)
+                                                    {
+                                                        ?>
+                                                        <option value="<?php echo $state_row->state_id; ?>"
+                                                        <?php 
+                                                        if($state_row->state_name=="Gujarat")
+                                                        {
+                                                            echo "selected='selected'";
+                                                        }
+                                                        ?>
+                                                        ><?php echo $state_row->state_name; ?></option>
+                                                        <?php
+                                                    }
+                                                ?>
+                                                </select>
+
+                                            </div><!-- End .col-sm-6 -->
+
+                                            <div class="col-sm-6">
+                                                <label>Town / City *</label>
+                                                <select class="form-control" id="cmb_city" name="cmb_city">
+                                                <?php 
+                                                    $this->db->join('tbl_state','tbl_city.state_id=tbl_state.state_id');
+                                                    $city_res=$this->db->get_where('tbl_city',array('tbl_state.state_name'=>'Gujarat'));
+                                                    foreach($city_res->result() as $city_row)
+                                                    {
+                                                        ?>
+                                                        <option value="<?php echo $city_row->city_id; ?>"><?php echo $city_row->city_name; ?></option>
+                                                        <?php
+                                                    }
+                                                ?>
+                                                </select>
+                                                <!--<input type="text" class="form-control" required>-->
+                                            </div><!-- End .col-sm-6 -->
+                                        </div><!-- End .row -->
+
+                                        <label>Street address *</label>
+                                        <input type="text" class="form-control" placeholder="House number and Street name" id="txt_address_line1"  
+                                        name="txt_address_line1" required>
+                                        <input type="text" class="form-control" placeholder="Appartments, suite, unit etc ..." id="txt_address_line2" 
+                                        name="txt_address_line2" >
+
+                                        
+
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <label>Postcode / ZIP *</label>
+                                                <input type="text" class="form-control" id="txt_pincode" name="txt_pincode" required>
+                                            </div><!-- End .col-sm-6 -->
+
+                                            <div class="col-sm-6">
+                                                <label>Phone *</label>
+                                                <input type="tel" placeholder="Please enter 10 Digit Mobile Number" class="form-control" id="txt_phone" name="txt_phone" required>
+                                            </div><!-- End .col-sm-6 -->
+                                        </div><!-- End .row -->
+
+                                        <label>Email address *</label>
+                                        <input type="email" class="form-control" id="txt_email" name="txt_email" required>
+
+                                            <button type="submit" class="btn btn-outline-primary-2 btn-minwidth-sm">
+                                                <span>SUBMIT</span>
+                                                <i class="icon-long-arrow-right"></i>
+                                            </button>
+                                        </form>
 								    				</div><!-- End .card-body -->
 								    			</div><!-- End .card-dashboard -->
 								    		</div><!-- End .col-lg-6 -->
@@ -101,48 +493,65 @@
 								    					<h3 class="card-title">Shipping Address</h3><!-- End .card-title -->
 
 														<p>You have not set up this type of address yet.<br>
-														<a href="#">Edit <i class="icon-edit"></i></a></p>
+														<a href="#address" id="signin-tab" data-toggle="tab" >Edit <i class="icon-edit"></i></a></p>
+                                                        <!-- <li class="nav-item">
+                                                            <a class="nav-link active"  role="tab" aria-controls="signin" aria-selected="true">Sign In</a>
+                                                        </li> -->
 								    				</div><!-- End .card-body -->
 								    			</div><!-- End .card-dashboard -->
 								    		</div><!-- End .col-lg-6 -->
 								    	</div><!-- End .row -->
 								    </div><!-- .End .tab-pane -->
-
+                   
 								    <div class="tab-pane fade" id="tab-account" role="tabpanel" aria-labelledby="tab-account-link">
-								    	<form action="#">
-			                				<div class="row">
-			                					<div class="col-sm-6">
-			                						<label>First Name *</label>
-			                						<input type="text" class="form-control" required>
-			                					</div><!-- End .col-sm-6 -->
+                                          <?php
+			 	  	 	// foreach($user_resultset->result() as $edit_row)
+			 	  	 	// {
+			 	  	 	?>  
+			 	 	                     <form method="post" action="<?php echo base_url(); ?>user/edit_profile/do_update">
 
-			                					<div class="col-sm-6">
-			                						<label>Last Name *</label>
-			                						<input type="text" class="form-control" required>
-			                					</div><!-- End .col-sm-6 -->
-			                				</div><!-- End .row -->
+			                				 <label> Name *</label>
+                                             <input type="text" class="form-control"  >
 
 		            						<label>Display Name *</label>
-		            						<input type="text" class="form-control" required>
+		            						<input type="text" class="form-control" >
 		            						<small class="form-text">This will be how your name will be displayed in the account section and in reviews</small>
 
 		                					<label>Email address *</label>
-		        							<input type="email" class="form-control" required>
+		        							<input type="email" class="form-control" >
+                                            
+                                            <button type="submit" class="btn btn-outline-primary-2">
+                                                    <span>SAVE CHANGES</span>
+                                                    <i class="icon-long-arrow-right"></i>
+                                                </button>
+                                         </form><br>
+                        <?php   
+                                                // }
+                        ?>
 
-		            						<label>Current password (leave blank to leave unchanged)</label>
-		            						<input type="password" class="form-control">
+                                            <form action="<?php echo base_url(); ?>user/change_password/update" method="post" class="contact-form mb-2">
+                                                
+                                            <?php 
+                                          if(isset($msgs))
+                                          {
+                                            echo $msgs;
+                                          }
+                                          ?><label>Current password (leave blank to leave unchanged)</label>
+                                                <input type="text" class="form-control" id="txt_old_pwd" name="txt_old_pwd" placeholder="" required>
 
-		            						<label>New password (leave blank to leave unchanged)</label>
-		            						<input type="password" class="form-control">
+                                                <label>New password (leave blank to leave unchanged)</label>
+                                                <input type="text" class="form-control" id="txt_pwd" name="txt_pwd" placeholder="" required>
 
-		            						<label>Confirm new password</label>
-		            						<input type="password" class="form-control mb-2">
+                                                <label>Confirm new password</label>
+                                                <input type="text" class="form-control" id="txt_cpwd" name="txt_cpwd" placeholder="" required>
+                                           
 
-		                					<button type="submit" class="btn btn-outline-primary-2">
-			                					<span>SAVE CHANGES</span>
-			            						<i class="icon-long-arrow-right"></i>
-			                				</button>
-			                			</form>
+                                                <button type="submit" class="btn btn-outline-primary-2">
+                                                    <span>Change Password</span>
+                                                    <i class="icon-long-arrow-right"></i>
+                                                </button>
+                                            </form>
+			                			<!-- </form> -->
 								    </div><!-- .End .tab-pane -->
 								</div>
 	                		</div><!-- End .col-lg-9 -->
@@ -341,3 +750,30 @@
 
 <!-- Mirrored from portotheme.com/html/molla/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2013], Fri, 12 Jun 2020 07:17:03 GMT -->
 </html>
+<style type="text/css">
+    .toolbox .form-control 
+    {
+        color: black;
+        font-weight: 300;
+        font-size: 1.2rem;
+    }
+    .table th, .table thead th, .table td {
+    color:black;
+    }
+
+    .table td 
+    {
+        padding-top: 0rem;
+        padding-bottom: 0rem;
+        padding:0px;
+    }
+    .table th, .table thead th, .table td {
+    border-top: none;
+    border-bottom:none;
+    }
+    th
+    {
+
+    }
+
+</style>
