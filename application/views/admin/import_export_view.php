@@ -124,10 +124,10 @@
                         <h3 class="box-title" style="font-size:25px">Image Upload Files</h3>
                         <div class="box box-primary">
                             <?php 
-                            if(isset($image_msg))
-                            {
-                                echo $image_msg;
-                            }
+                                if(isset($image_msg))
+                                {
+                                    echo $image_msg;
+                                }
                             ?>
                             <form role="form" method="post" action="<?php echo base_url(); ?>admin/upload_image_zip" enctype="multipart/form-data">
                                 <div class="box-body">
