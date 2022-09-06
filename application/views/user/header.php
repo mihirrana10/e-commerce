@@ -13,7 +13,7 @@
 <header class="header header-2 header-intro-clearance">
    <div class="header-top">
       <div class="container">
-         <div class="header-left">
+         <div class="header-left">  
             <p style="color:black">GET FREE EARRINGS WITH THE NECKLACE.</p>
             <!--<a href="#">&nbsp;Read more ...</a>-->
          </div>

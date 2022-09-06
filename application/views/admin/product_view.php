@@ -299,25 +299,7 @@
                                     <button type="reset" class="btn btn-default">Reset</button>
                                 </div>
                             </form>
-                            <div class="form-group">
-                                                    <label>Image Upload Files</label>
-                                                        <?php 
-                                                        if(isset($image_msg))
-                                                        {
-                                                            echo $image_msg;
-                                                        }   
-                                                        ?>
-                                                        <form role="form" method="post" action="<?php echo base_url(); ?>admin/upload_image_zip" enctype="multipart/form-data">
-                                                            <div class="box-body">
-                                                                <div class="form-group">
-                                                                    <label>Image Zip File</label>
-                                                                    <input type="file" id="zip_file" name="zip_file">
-                                                                </div>
-                                                                <button type="submit" class="btn btn-success">Submit</button>
-                                                                <button type="reset" class="btn btn-default">Reset</button>
-                                                            </div>
-                                                        </form> 
-                                            </div>
+                            
                         </div></div>
                     
                 </div>

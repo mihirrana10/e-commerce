@@ -1106,7 +1106,7 @@ class admin extends CI_Controller
         $newname                 = $_FILES["zip_file"]["name"];
         $newname                 = $this->generate_random_name($newname);
         $config['file_name']     = $newname;
-        $config['upload_path']   = 'files/admin/product_zip' ;
+        $config['upload_path']   = 'files/admin/360' ;
         $config['allowed_types'] = 'zip';
         $config['max_width']     = '102400';
         $config['max_height']    = '76800';
@@ -1116,7 +1116,7 @@ class admin extends CI_Controller
         $this->upload->do_upload('zip_file');
         
         $zip = new ZipArchive;
-        $res = $zip->open('files/admin/product_zip/' . $newname);
+        $res = $zip->open('files/admin/360/' . $newname);
         if ($res === TRUE) {
             $zip->extractTo('files/admin/product/');
             for ($i = 0; $i < $zip->numFiles; $i++) {
@@ -1194,6 +1194,7 @@ class admin extends CI_Controller
             {
                 $page_data['data'] = $this->product_readxls($config['upload_path'].$newname);
             }
+            
             else if(trim($this->input->post('rdo_action'))=="update")
             {
                 $page_data['data'] = $this->product_readxls_update($config['upload_path'].$newname);

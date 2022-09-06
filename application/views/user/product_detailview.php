@@ -13,6 +13,26 @@
 <?php
     include_once('head_file.php');
 ?>
+   <link rel="stylesheet" href="<?php echo base_url(); ?>template/user/assets/css/template743d.css">
+   <link rel="stylesheet" href="<?php echo base_url(); ?>template/user/assets/css/slick/slick743d.css?ver=1652347532">
+   <!-- <link rel="stylesheet" href="<?php echo base_url(); ?>template/user/assets/css/bootstrap743d.css"> -->
+   <link rel="stylesheet" href="<?php echo base_url(); ?>template/user/assets/css/wpbingo743d.css">
+   <link rel="stylesheet" href="<?php echo base_url(); ?>template/user/assets/css/elegant743d.css">
+   <link rel="stylesheet" href="<?php echo base_url(); ?>template/user/assets/css/icomoon743d.css">
+   <link rel="stylesheet" href="<?php echo base_url(); ?>template/user/assets/css/jquery.circlestime743d.css">
+   <link rel="stylesheet" href="<?php echo base_url(); ?>template/user/assets/css/elegant7materia743d43d.css">
+   <link rel="stylesheet" href="<?php echo base_url(); ?>template/user/assets/css/photoswipe.minaec2.css">
+
+   <style>
+    img {
+    border: 0;
+    vertical-align: top;
+    max-width: 100%;
+    height: auto;
+}
+
+
+   </style>
 
 <body>
     <div class="page-wrapper">
@@ -65,40 +85,63 @@
                                                 </a>
                                                 
                                             </figure><!-- End .product-main-image -->
+                                           
+
 
                                             <div id="product-zoom-gallery" class="product-image-gallery">
-                                                 <?php 
-                                            $product_additional_image_res=$this->db->get_where('tbl_product_additional_image',array('product_id'=>$result_row->product_id));
-                                            foreach($product_additional_image_res->result() as 
-                                                $product_additional_image_row)
-                                            {
-                                                ?>
-                                                
-                                                <a class="product-gallery-item" href="#" data-image="<?php echo base_url(); ?>files/admin/product/<?php echo $product_additional_image_row->product_additional_image; ?>" data-zoom-image="<?php echo base_url(); ?>files/admin/product/big/<?php echo $product_additional_image_row->product_additional_image; ?>">
-                                                   
-                                                <img src="<?php echo base_url(); ?>files/admin/product/small/<?php echo $product_additional_image_row->product_additional_image; ?>" alt="product cross">
-                                                </a>
-                                                <?php
-                                            }
-                                            ?>
-                                                <!-- <a class="product-gallery-item active" href="#" data-image="<?php echo base_url(); ?>template/user/assets/images/products/single/sidebar-gallery/1.jpg" data-zoom-image="<?php echo base_url();?>template/user/assets/images/products/single/sidebar-gallery/1-big.jpg">
-                                                    <img src="<?php echo base_url(); ?>template/user/assets/images/products/single/sidebar-gallery/1-small.jpg" alt="product side">
-                                                </a>
+                                                            <?php 
+                                                        $product_additional_image_res=$this->db->get_where('tbl_product_additional_image',array('product_id'=>$result_row->product_id));
+                                                        foreach($product_additional_image_res->result() as 
+                                                            $product_additional_image_row)
+                                                        {
+                                                            ?>
+                                                            
+                                                            <a class="product-gallery-item" href="#" data-image="<?php echo base_url(); ?>files/admin/product/<?php echo $product_additional_image_row->product_additional_image; ?>" data-zoom-image="<?php echo base_url(); ?>files/admin/product/big/<?php echo $product_additional_image_row->product_additional_image; ?>">
+                                                            
+                                                            <img src="<?php echo base_url(); ?>files/admin/product/small/<?php echo $product_additional_image_row->product_additional_image; ?>" alt="product cross">
+                                                            
+                                                        </a>
 
-                                                <a class="product-gallery-item" href="#" data-image="<?php echo base_url(); ?>template/user/assets/images/products/single/sidebar-gallery/2.jpg" data-zoom-image="<?php echo base_url();?>template/user/assets/images/products/single/sidebar-gallery/2-big.jpg">
-                                                    <img src="<?php echo base_url(); ?>template/user/assets/images/products/single/sidebar-gallery/2-small.jpg" alt="product cross">
-                                                </a>
 
-                                                <a class="product-gallery-item" href="#" data-image="<?php echo base_url(); ?>template/user/assets/images/products/single/sidebar-gallery/3.jpg" data-zoom-image="<?php echo base_url();?>template/user/assets/images/products/single/sidebar-gallery/3-big.jpg">
-                                                    <img src="<?php echo base_url(); ?>template/user/assets/images/products/single/sidebar-gallery/3-small.jpg" alt="product with model">
-                                                </a>
-
-                                                <a class="product-gallery-item" href="#" data-image="<?php echo base_url(); ?>template/user/assets/images/products/single/sidebar-gallery/4.jpg" data-zoom-image="<?php echo base_url();?>template/user/assets/images/products/single/sidebar-gallery/4-big.jpg">
-                                                    <img src="<?php echo base_url(); ?>template/user/assets/images/products/single/sidebar-gallery/4-small.jpg" alt="product back">
-                                                </a> -->
+                                                            <?php
+                                                        }
+                                                        
+                                                        ?>   
+                                                        <img width="25%" height="25%" src="https://wpbingosite.com/wordpress/mojuri/wp-content/uploads/2018/10/15-1.jpg" class="attachment-shop_single size-shop_single wp-post-image" alt="" id="image" title=""  data-large_image_width="1000" data-large_image_height="1000" />
+         <div class="mojuri-360-button"><i class="wpb-icon-d-design"></i>360</div>
+         <div class="content-product-360-view">
+            <div class="product-360-view" data-count="18">
+               <div class="mojuri-360-button"></div>
+               <div class="images-display">
+                  <ul class="images-list">
+                     <li class="images-display image-0 active"><img width="450" height="450" src="<?php echo base_url().'files/admin/360/15-2.jpg'?>" class="attachment-shop_catalog size-shop_catalog" alt="15-2" /></li>
+                     <li class="images-display image-1 "><img width="450" height="450" src="<?php echo base_url().'files/admin/360/15-3.jpg'?>" class="attachment-shop_catalog size-shop_catalog" alt="15-3" /></li>
+                     <li class="images-display image-2 "><img width="450" height="450" src="<?php echo base_url().'files/admin/360/15-4.jpg'?>" class="attachment-shop_catalog size-shop_catalog" alt="15-4" /></li>
+                     <li class="images-display image-3 "><img width="450" height="450" src="<?php echo base_url().'files/admin/360/15-5.jpg'?>" class="attachment-shop_catalog size-shop_catalog" alt="15-5" /></li>
+                     <li class="images-display image-4 "><img width="450" height="450" src="<?php echo base_url().'files/admin/360/15-6.jpg'?>" class="attachment-shop_catalog size-shop_catalog" alt="15-6" /></li>
+                     <li class="images-display image-5 "><img width="450" height="450" src="<?php echo base_url().'files/admin/360/15-7.jpg'?>" class="attachment-shop_catalog size-shop_catalog" alt="15-7" /></li>
+                     <li class="images-display image-6 "><img width="450" height="450" src="<?php echo base_url().'files/admin/360/15-8.jpg'?>" class="attachment-shop_catalog size-shop_catalog" alt="15-8" /></li>
+                     <li class="images-display image-7 "><img width="450" height="450" src="<?php echo base_url().'files/admin/360/15-9.jpg'?>" class="attachment-shop_catalog size-shop_catalog" alt="15-9" /></li>
+                     <li class="images-display image-8 "><img width="450" height="450" src="<?php echo base_url().'files/admin/360/16.jpg'?>" class="attachment-shop_catalog size-shop_catalog" alt="16" /></li>
+                     <li class="images-display image-9 "><img width="450" height="450" src="<?php echo base_url().'files/admin/360/16-1.jpg'?>" class="attachment-shop_catalog size-shop_catalog" alt="16-1" /></li>
+                     <li class="images-display image-10 "><img width="450" height="450" src="<?php echo base_url().'files/admin/360/16-2.jpg'?>" class="attachment-shop_catalog size-shop_catalog" alt="16-2" /></li>
+                     <li class="images-display image-11 "><img width="450" height="450" src="<?php echo base_url().'files/admin/360/16-3.jpg'?>" class="attachment-shop_catalog size-shop_catalog" alt="16-3" /></li>
+                     <li class="images-display image-12 "><img width="450" height="450" src="<?php echo base_url().'files/admin/360/16-4.jpg'?>" class="attachment-shop_catalog size-shop_catalog" alt="16-4" /></li>
+                     <li class="images-display image-13 "><img width="450" height="450" src="<?php echo base_url().'files/admin/360/16-5.jpg'?>" class="attachment-shop_catalog size-shop_catalog" alt="16-5" /></li>
+                     <li class="images-display image-14 "><img width="450" height="450" src="<?php echo base_url().'files/admin/360/16-6.jpg'?>" class="attachment-shop_catalog size-shop_catalog" alt="16-6" /></li>
+                     <li class="images-display image-15 "><img width="450" height="450" src="<?php echo base_url().'files/admin/360/16-7.jpg'?>" class="attachment-shop_catalog size-shop_catalog" alt="16-7" /></li>
+                     <li class="images-display image-16 "><img width="450" height="450" src="<?php echo base_url().'files/admin/360/16-8.jpg'?>" class="attachment-shop_catalog size-shop_catalog" alt="16-8" /></li>
+                     <li class="images-display image-17 "><img width="450" height="450" src="<?php echo base_url().'files/admin/360/16-9.jpg'?>" class="attachment-shop_catalog size-shop_catalog" alt="16-9" /></li>
+                     <li class="images-display image-18 "><img width="450" height="450" src="<?php echo base_url().'files/admin/360/17.jpg'?>" class="attachment-shop_catalog size-shop_catalog" alt="17" /></li>
+                  </ul>
+               </div>
+            </div>
+         </div>   
                                             </div><!-- End .product-image-gallery -->
+                                            
                                         </div><!-- End .product-gallery -->
                                     </div><!-- End .col-md-6 -->
+                                    
                                    
                                     <div class="col-md-6">
                                         <div class="product-details product-details-sidebar">
