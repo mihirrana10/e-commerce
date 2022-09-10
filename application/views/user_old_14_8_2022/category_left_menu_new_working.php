@@ -414,6 +414,7 @@
 										</div>
 									</div>
         						</div>-->
+								
         						<div class="widget widget-collapsible">
     								<h3 class="widget-title">
 									    <a data-toggle="collapse" href="#widget-5" role="button" aria-expanded="true" aria-controls="widget-5">
@@ -435,9 +436,9 @@
 									</div><!-- End .collapse -->
         						</div><!-- End .widget -->
                 			</div><!-- End .sidebar sidebar-shop -->
-                		</aside><!-- End .col-lg-3 -->
+</aside><!-- End .col-lg-3 -->
 
-                		<script type="text/javascript">
+                	<script type="text/javascript">
 						function callme(action,id)
 						{
 							window.location="<?php echo base_url(); ?>user/search_query/"+action+"/"+id;
@@ -449,7 +450,8 @@
 						}
 
 
-						</script>
+					</script>
+						
 						<input type="hidden" id="txt_base_url" name="txt_base_url" value="<?php echo base_url(); ?>">
 
 						<input type="hidden" id="txt_query_string" name="txt_query_string" value="<?php echo $query_str; ?>">
