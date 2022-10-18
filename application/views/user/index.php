@@ -6,6 +6,12 @@
 <?php
     include_once('head_file.php');
 ?>
+   <link rel="stylesheet" href="<?php echo base_url(); ?>template/user/assets/css/cb10f5a52563d159729a.css">
+   <link rel="stylesheet" href="<?php echo base_url(); ?>template/user/assets/css/ebd0fdbe271916ca6a3a.css">
+   <link rel="stylesheet" href="<?php echo base_url(); ?>template/user/assets/css/5f08894ad72dbf4e998a.css">
+   <link rel="stylesheet" href="<?php echo base_url(); ?>template/user/assets/css/c32046c11e4f897d1bb6.css">
+   <!-- <link rel="stylesheet" href="<?php echo base_url(); ?>template/user/assets/css/product.css">
+   <link rel="stylesheet" href="<?php echo base_url(); ?>template/user/assets/js/product.js"> -->
 
 <body>
     <div class="page-wrapper">
@@ -94,7 +100,7 @@
                         </div><!-- End .col-lg-5 -->
                         <div class="col-md-12 col-lg-4">
                             <div class="banner banner-large banner-overlay banner-overlay-light">
-                                <a href="#">
+                                <a href="#">    
                                     <img src="https://banner.caratlane.com/live-images/49cd474d5b63483ab830fc39e2f1760f.jpg" alt="Banner">
                                 </a>
 
@@ -106,6 +112,42 @@
                     </div><!-- End .row -->
                 </div><!-- End .container -->
             </div><!-- End .banner-group -->
+            <div style="position:relative;margin-bottom:105px" class="wideContent">
+        
+    <div style="display:flex;justify-content:space-between;position:relative" class="featured-bar--Qrn5i"><a target="_blank" rel="nofollow" href="https://www.forbes.com/sites/rachellebergstein/2017/02/10/valentines-day-survey-shows-that-when-it-comes-to-engagements-millennials-embrace-tradition/#58478af45d7e" class="featured-option--wLn5K"><img width="100%" height="100%" alt="featured in Forbes" title="featured in Forbes" src="https://ion.r2net.com/images/amazingHomepage/FeaturedBar/NewGreyIcons/Forbes_Grey.svg"></a><a target="_blank" rel="nofollow" href="https://www.facebook.com/watch/?v=2028201153987423" class="featured-option--wLn5K"><img width="100%" height="100%" alt="featured in BuzzFeed" title="featured in BuzzFeed" src="https://ion.r2net.com/images/amazingHomepage/FeaturedBar/NewGreyIcons/BuzzFeed_Grey.svg"></a><a target="_blank" rel="nofollow" href="https://www.theknot.com/content/how-much-to-spend-on-engagement-ring" class="featured-option--wLn5K"><img width="100%" height="100%" alt="featured in TheKnot" title="featured in TheKnot" src="https://ion.r2net.com/images/amazingHomepage/FeaturedBar/NewGreyIcons/TheKnot_Grey.svg"></a><a target="_blank" rel="nofollow" href="https://www.usmagazine.com/stylish/pictures/best-celebrity-engagement-rings-of-2020-details/" class="featured-option--wLn5K"><img width="100%" height="100%" alt="featured in UsWeekly" title="featured in UsWeekly" src="https://ion.r2net.com/images/amazingHomepage/FeaturedBar/NewGreyIcons/UsWeekly_Grey.svg"></a><a target="_blank" rel="nofollow" href="https://www.elitedaily.com/p/10-at-home-proposal-stories-that-show-home-is-where-the-heart-is-22685800" class="featured-option--wLn5K"><img width="100%" height="100%" alt="featured in EliteDaily" title="featured in EliteDaily" src="https://ion.r2net.com/images/amazingHomepage/FeaturedBar/NewGreyIcons/EliteDaily_Grey.svg"></a><a target="_blank" rel="nofollow" href="https://www.elle.com/culture/celebrities/a33283782/details-nicola-peltz-engagement-ring/" class="featured-option--wLn5K"><img width="100%" height="100%" alt="featured in Elle" title="featured in Elle" src="https://ion.r2net.com/images/amazingHomepage/FeaturedBar/NewGreyIcons/Elle_Grey.svg"></a><a target="_blank" rel="nofollow" href="https://www.businessinsider.com/engagement-rings-instagram-changing-the-way-we-buy-2020-2" class="featured-option--wLn5K"><img width="100%" height="100%" alt="featured in BusinessInsider" title="featured in BusinessInsider" src="https://ion.r2net.com/images/amazingHomepage/FeaturedBar/NewGreyIcons/BusinessInsider_Grey.svg"></a><a target="_blank" rel="nofollow" href="" class="featured-option--wLn5K unclickable--HWR3e"><img width="100%" height="100%" alt="featured in NewsWeek" title="featured in NewsWeek" src="https://ion.r2net.com/images/amazingHomepage/FeaturedBar/NewGreyIcons/NewsWeek_Grey.svg"></a><a target="_blank" rel="nofollow" href="http://www.gq.com/story/buying-an-engagement-ring-online" class="featured-option--wLn5K"><img width="100%" height="100%" alt="featured in GQ" title="featured in GQ" src="https://ion.r2net.com/images/amazingHomepage/FeaturedBar/NewGreyIcons/GQ_Grey.svg"></a></div>
+         <div class="justify-align events-align--k72EW" style="position:relative;z-index:3;font-family:Nunito Sans">
+            <div>
+               <div class="abs-scale--tpFKj">
+                  <div class="abs--TOY7l">
+                     <div class="line--fRUUD"></div>
+                     <div data-qa="homePage_weddingRingsSplashBannerText" class="line-text--EKsmK">wedding &amp;
+                        <br>anniversary
+                     </div>
+                  </div>
+                  <div class="abs-img-box--jYk7o"><a data-ajax-mode="disabled" href="/wedding-rings/"><img src="https://ion.r2net.com/images/amazingHomepage/Wedding_Anniversary2.jpg" alt="Wedding and Anniversary Rings"></a></div>
+               </div>
+            </div>
+            <div>
+               <div class="abs-scale--tpFKj">
+                  <div class="abs--TOY7l">
+                     <div class="line--fRUUD"></div>
+                     <div data-qa="homePage_fineJewelrySplashBannerText" class="line-text--EKsmK">fine<br>jewelry</div>
+                  </div>
+                  <div class="abs-img-box--jYk7o"><a data-ajax-mode="disabled" href="/fine-jewelry/"><img src="https://ion.r2net.com/images/amazingHomepage/box-c.jpg?v=4" alt="Fine Jewelry"></a></div>
+               </div>
+            </div>
+            <div>
+               <div class="abs-scale--tpFKj">
+                  <div class="abs--TOY7l">
+                     <div class="line--fRUUD"></div>
+                     <div data-qa="homePage_designerCollectionBannerText" class="line-text--EKsmK">designer<br>collections</div>
+                  </div>
+                  <div class="abs-img-box--jYk7o"><a data-ajax-mode="disabled" href="/engagement-rings/unique/"><img src="https://ion.r2net.com/images/amazingHomepage/Eternity.jpg?v=11" alt="Unique Engagement Rings"></a></div>
+               </div>
+            </div>
+         </div>
+  
+</div>
 
             <div class="mb-3"></div><!-- End .mb-6 -->
 
@@ -575,12 +617,166 @@
                 <!-- End .tab-content -->
             </div><!-- End .container -->
 
-            <div class="container">
-                <hr class="mt-1 mb-6">
-            </div><!-- End .container -->
-            
-            
+            <div style="position:relative">
+   <div data-good="1" id="newhomepage" data-gtm-title="Homepage1" class="newhomepage--Ve4iz scroll-started--HECgC">
+   <div class="meet-bg-container--Va7_i">
+   <div class="meet-bg--j36U8">
+      <div style="margin:0 auto;position:relative;bottom:29px" class="separator-container--aGiVL">
+         <div style="background-color:#f9f3ec" class="separator--fMSd5"></div>
+         <div style="background-color:#fff" class="separator--fMSd5"></div>
+      </div>
+   </div>
+   <div class="title-pack--WpNvc">
+      <h2 style="margin:8px 0 0;font-family:Nunito Sans">James Allen's best selling</h2>
+      <h1 style="margin:0;font-family:Playfair">Engagement Rings</h1>
+   </div>
+</div>
+<div class="Swipperstyle__ECcarouselContainer-sc-1vlktjj-0 hUZqfE ECcarouselContainer undefined">
+   <div class="swiper-container swiper-container-initialized swiper-container-horizontal" style="cursor: grab;">
+      <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(-1145.09px, 0px, 0px);"><a data-qa="carousel-slide-Solitaire-link" href="/engagement-rings/solitaire/14k-white-gold-2mm-knife-edge-solitaire-engagement-ring-item-7115" data-container="#WidePane" data-gtm-name="best sellers" title="Solitaire" class="swiper-slide swiper-slide-duplicate" style="width: 458.312px; margin-right: 30px;" data-swiper-slide-index="8"><img style="width:390px" alt="Solitaire ring" src="https://ion.r2net.com/images/amazingHomepage/rings/Solitaire-Engagement-Ring.png" data-qa="carousel-slide-Solitaire"></a><a data-qa="carousel-slide-Pavé-link" href="/engagement-rings/pave/14k-rose-gold-petite-pave-engagement-ring-flush-fit-item-56265" data-container="#WidePane" data-gtm-name="best sellers" title="Pavé" class="swiper-slide swiper-slide-duplicate" style="width: 458.312px; margin-right: 30px;" data-swiper-slide-index="9"><img style="width:390px" alt="Pavé ring" src="https://ion.r2net.com/images/amazingHomepage/rings/pave-engagement-ring.png" data-qa="carousel-slide-Pavé"></a><a data-qa="carousel-slide-Three-stone-link" href="/engagement-rings/three-stone/14k-white-gold-tapered-baguette-diamond-engagement-ring-item-7101" data-container="#WidePane" data-gtm-name="best sellers" title="Three-stone" class="swiper-slide swiper-slide-duplicate swiper-slide-prev" style="width: 458.312px; margin-right: 30px;" data-swiper-slide-index="10"><img style="width:390px" alt="Three-stone ring" src="https://ion.r2net.com/images/amazingHomepage/rings/Three-stone-Engagement-Ring.png" data-qa="carousel-slide-Three-stone"></a><a data-qa="carousel-slide-Channel-Set-link" href="/engagement-rings/tension/14k-white-gold-bezel-set-pave-diamond-engagement-ring-item-53294" data-container="#WidePane" data-gtm-name="best sellers" title="Channel Set" class="swiper-slide swiper-slide-active" style="width: 458.312px; margin-right: 30px;" data-swiper-slide-index="0"><img style="width:390px" alt="Channel Set ring" src="https://ion.r2net.com/images/amazingHomepage/rings/Channel-Set-Engagement-Ring.png" data-qa="carousel-slide-Channel-Set"></a><a data-qa="carousel-slide-Halo-link" href="/engagement-rings/halo/14k-rose-gold-floral-halo-engagement-ring-item-53439" data-container="#WidePane" data-gtm-name="best sellers" title="Halo" class="swiper-slide swiper-slide-next" style="width: 458.312px; margin-right: 30px;" data-swiper-slide-index="1"><img style="width:390px" alt="Halo ring" src="https://ion.r2net.com/images/amazingHomepage/rings/Halo-Women-Engagement-Ring.png" data-qa="carousel-slide-Halo"></a><a data-qa="carousel-slide-Side-stone-link" href="/engagement-rings/side-stones/14k-white-gold-round-and-marquise-shape-diamond-engagement-ring-item-49489" data-container="#WidePane" data-gtm-name="best sellers" title="Side-stone" class="swiper-slide" style="width: 458.312px; margin-right: 30px;" data-swiper-slide-index="2"><img style="width:390px" alt="Side-stone ring" src="https://ion.r2net.com/images/amazingHomepage/rings/Side-stone-Engagement-Ring.png" data-qa="carousel-slide-Side-stone"></a><a data-qa="carousel-slide-Eternity-link" href="/wedding-rings/womens-eternity/14k-yellow-gold-ladies-050ctw-angled-common-prong-diamond-eternity-ring-item-56291" data-container="#WidePane" data-gtm-name="best sellers" title="Eternity" class="swiper-slide" style="width: 458.312px; margin-right: 30px;" data-swiper-slide-index="3"><img style="width:390px" alt="Eternity ring" src="https://ion.r2net.com/images/amazingHomepage/rings/eternity-ring.png" data-qa="carousel-slide-Eternity"></a><a data-qa="carousel-slide-Halo-link" href="/engagement-rings/halo/14k-white-gold-round-split-band-diamond-halo-engagement-ring-item-49498" data-container="#WidePane" data-gtm-name="best sellers" title="Halo" class="swiper-slide" style="width: 458.312px; margin-right: 30px;" data-swiper-slide-index="4"><img style="width:390px" alt="Halo ring" src="https://ion.r2net.com/images/amazingHomepage/rings/Halo-Engagement-Ring.png" data-qa="carousel-slide-Halo"></a><a data-qa="carousel-slide-Solitaire-link" href="/engagement-rings/solitaire/14k-white-gold-rope-solitaire-engagement-ring-item-52624" data-container="#WidePane" data-gtm-name="best sellers" title="Solitaire" class="swiper-slide" style="width: 458.312px; margin-right: 30px;" data-swiper-slide-index="5"><img style="width:390px" alt="Solitaire ring" src="https://ion.r2net.com/images/amazingHomepage/rings/Solitaire-Classic-Engagement-Ring.png" data-qa="carousel-slide-Solitaire"></a><a data-qa="carousel-slide-Stackable-link" href="/wedding-rings/matching-bands/14k-white-gold-round-brilliant-diamond-and-marquise-sapphire-wedding-ring-item-49417" data-container="#WidePane" data-gtm-name="best sellers" title="Stackable" class="swiper-slide" style="width: 458.312px; margin-right: 30px;" data-swiper-slide-index="6"><img style="width:390px" alt="Stackable ring" src="https://ion.r2net.com/images/amazingHomepage/rings/Stackable-Ring.png" data-qa="carousel-slide-Stackable"></a><a data-qa="carousel-slide-Side-stone-link" href="/engagement-rings/side-stones/14k-yellow-gold-blossoming-vine-engagement-ring-item-53370" data-container="#WidePane" data-gtm-name="best sellers" title="Side-stone" class="swiper-slide" style="width: 458.312px; margin-right: 30px;" data-swiper-slide-index="7"><img style="width:390px" alt="Side-stone ring" src="https://ion.r2net.com/images/amazingHomepage/rings/Side-stone-Diamond-Engagement-Ring.png" data-qa="carousel-slide-Side-stone"></a><a data-qa="carousel-slide-Solitaire-link" href="/engagement-rings/solitaire/14k-white-gold-2mm-knife-edge-solitaire-engagement-ring-item-7115" data-container="#WidePane" data-gtm-name="best sellers" title="Solitaire" class="swiper-slide" style="width: 458.312px; margin-right: 30px;" data-swiper-slide-index="8"><img style="width:390px" alt="Solitaire ring" src="https://ion.r2net.com/images/amazingHomepage/rings/Solitaire-Engagement-Ring.png" data-qa="carousel-slide-Solitaire"></a><a data-qa="carousel-slide-Pavé-link" href="/engagement-rings/pave/14k-rose-gold-petite-pave-engagement-ring-flush-fit-item-56265" data-container="#WidePane" data-gtm-name="best sellers" title="Pavé" class="swiper-slide" style="width: 458.312px; margin-right: 30px;" data-swiper-slide-index="9"><img style="width:390px" alt="Pavé ring" src="https://ion.r2net.com/images/amazingHomepage/rings/pave-engagement-ring.png" data-qa="carousel-slide-Pavé"></a><a data-qa="carousel-slide-Three-stone-link" href="/engagement-rings/three-stone/14k-white-gold-tapered-baguette-diamond-engagement-ring-item-7101" data-container="#WidePane" data-gtm-name="best sellers" title="Three-stone" class="swiper-slide swiper-slide-duplicate-prev" style="width: 458.312px; margin-right: 30px;" data-swiper-slide-index="10"><img style="width:390px" alt="Three-stone ring" src="https://ion.r2net.com/images/amazingHomepage/rings/Three-stone-Engagement-Ring.png" data-qa="carousel-slide-Three-stone"></a><a data-qa="carousel-slide-Channel-Set-link" href="/engagement-rings/tension/14k-white-gold-bezel-set-pave-diamond-engagement-ring-item-53294" data-container="#WidePane" data-gtm-name="best sellers" title="Channel Set" class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" style="width: 458.312px; margin-right: 30px;" data-swiper-slide-index="0"><img style="width:390px" alt="Channel Set ring" src="https://ion.r2net.com/images/amazingHomepage/rings/Channel-Set-Engagement-Ring.png" data-qa="carousel-slide-Channel-Set"></a><a data-qa="carousel-slide-Halo-link" href="/engagement-rings/halo/14k-rose-gold-floral-halo-engagement-ring-item-53439" data-container="#WidePane" data-gtm-name="best sellers" title="Halo" class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-next" style="width: 458.312px; margin-right: 30px;" data-swiper-slide-index="1"><img style="width:390px" alt="Halo ring" src="https://ion.r2net.com/images/amazingHomepage/rings/Halo-Women-Engagement-Ring.png" data-qa="carousel-slide-Halo"></a><a data-qa="carousel-slide-Side-stone-link" href="/engagement-rings/side-stones/14k-white-gold-round-and-marquise-shape-diamond-engagement-ring-item-49489" data-container="#WidePane" data-gtm-name="best sellers" title="Side-stone" class="swiper-slide swiper-slide-duplicate" style="width: 458.312px; margin-right: 30px;" data-swiper-slide-index="2"><img style="width:390px" alt="Side-stone ring" src="https://ion.r2net.com/images/amazingHomepage/rings/Side-stone-Engagement-Ring.png" data-qa="carousel-slide-Side-stone"></a></div>
+      <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+   </div>
+   <div class="Arrowsstyle__Main-sc-rdoawg-0 fDCINA">
+      <div class="container" styles="[object Object]">
+         <div role="presentation" data-qa="rightArrow-carousel" class="arrowRight"></div>
+         <div class="textContainer">
+            <h3 class="headerText">
+               Channel Set<!-- --> <!-- -->ring
+            </h3>
+            <div class="subText">Bezel Set Pavé Engagement Ring</div>
+         </div>
+         <div role="presentation" data-qa="leftArrow-carousel" class="arrowLeft"></div>
+      </div>
+   </div>
+</div>  
+
+   
+   <div class="bottom-section--Vt1ku" style="background-position: right 70px top 100px, 0px 0px;">
+   <div class="bottom-left-bg-container--WvHb3">
+      <div class="sparkle-bg--Ze3o8" style="top: 177.02px;"></div>
+      <div class="bottom-left-bg--eit6q"></div>
+   </div>
+   <div data-gtm-name="diamond inspection" class="wideContent">
+      <div class="table-align">
+         <div style="width:50%"></div>
+         <div class="diamond-inspection-container--IcPu0">
+            <div class="diamond-inspection--zk5J3">
+               <div class="title-pack--WpNvc">
+                  <div>REAL-TIME INTERACTIVE</div>
+                  <div>DIAMOND INSPECTION</div>
+                  <div class="sub-title--_bLmY">Take a closer look at your favorite diamonds using our Real-Time Diamond Inspection service; a one-on-one consultation with a non-commissioned certified gemologist. Share your screen and get expert guidance as you <b>explore diamonds in 360° HD</b> with up to 40x magnification. Mark points of interest on the screen while chatting with your diamond expert in real time, and review everything from the specs to the grading certificate together.</div>
+               </div>
+               <div style="font-size:17px;font-family:Nunito Sans;color:rgb(27, 27, 27)">
+                  <div style="font-weight:bold" class="pink-bg--hZDky"><a data-ajax-mode="disabled" href="/diamond-consultation/">START YOUR DIAMOND INSPECTION NOW</a></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+   <div style="background-color:#fbf8f3;margin-bottom:98px;background-position:top -38px left;position:relative;font-family:Nunito Sans;color:rgb(27, 27, 27)">
+   <div style="padding:50px;width:500px;margin:0px auto" class="title-pack--WpNvc center--DlBad">
+      <div></div>
+      <div>the crowning jewels</div>
+      <div class="sub-title--_bLmY">Our diamond and gemstone fine jewelry collection offers hand-crafted pieces of unforgettable luxury that are perfect for any occasion.</div>
+   </div>
+   <div style="position:relative">
+      <!-- <div class="text-bg--GKvxi text-bg-1--fXl3n">eternity rings</div>
+      <div class="text-bg--GKvxi text-bg-2--I2VwD">gemstone collection</div>
+      <div class="text-bg--GKvxi text-bg-3--sF8Ff">men's wedding</div>
+      <div class="text-bg--GKvxi text-bg-4--eYsHt">diamond studs</div> -->
+      <div style="text-align:center;padding:211px 0 0px 0" data-gtm-name="floating banners" class="wideContent floating-banners--YsiQp">
+         <div class="table-align">
+            <div class="float-area--aOHFo">
+               <a data-ajax-mode="disabled" href="/wedding-rings/womens-eternity/">
+                  <span style="margin-bottom: 100px; bottom: 192px;" class="float-white-box--XidVC">
+                     <h3 class="float-header--RPk6d">eternity rings</h3>
+                     <div class="float-content--wTe8A">The ultimate symbol of lifelong commitment, eternity rings make for an ideal wedding or anniversary ring, or can be worn alongside your engagement ring.</div>
+                     <div class="float-bottom--ukk67">
+                        <div class="pink-bg--hZDky">explore</div>
+                     </div>
+                  </span>
+               </a>
+               <div class="pink-box--tsz67 pink-box1--H6oKV" style="bottom: 219px; background-position-y: -23px;"></div>
+            </div>
+            <div></div>
+         </div>
+         <div style="margin-top:-380px" class="table-align images-align--q9iQe">
+            <div>
+               <div style="margin-top:400px" class="float-area--aOHFo">
+                  <a data-ajax-mode="disabled" href="/wedding-rings/mens-classic/">
+                     <span style="margin-bottom: 200px; bottom: 192px;" class="float-white-box--XidVC">
+                        <h3 class="float-header--RPk6d">Men's Wedding Rings</h3>
+                        <div class="float-content--wTe8A">Match his style with the perfect wedding ring, be it traditional classic, rugged carved, elegant diamond, or funky alternative metal.</div>
+                        <div class="float-bottom--ukk67">
+                           <div class="pink-bg--hZDky">discover</div>
+                        </div>
+                     </span>
+                  </a>
+                  <div class="pink-box--tsz67 pink-box3--j2BAj" style="bottom: 219px; background-position-y: 37px;"></div>
+               </div>
+            </div>
+            <div>
+               <div style="margin-top:250px" class="float-area--aOHFo">
+                  <div class="pink-box--tsz67 pink-box2--N5pAZ" style="bottom: 219px; background-position-y: 77px;"></div>
+                  <a data-ajax-mode="disabled" href="/gemstones/blue-sapphire/">
+                     <span style="margin-bottom: 100px; bottom: 192px;" class="float-white-box--XidVC">
+                        <h3 class="float-header--RPk6d">gemstone collection</h3>
+                        <div class="float-content--wTe8A">Kissed by the colors of nature, sapphire, ruby, and emerald jewelry makes for a stunningly exotic look.</div>
+                        <div class="float-bottom--ukk67">
+                           <div class="pink-bg--hZDky">Browse</div>
+                        </div>
+                     </span>
+                  </a>
+               </div>
+               <div>
+                  <div style="margin-top:400px" class="float-area--aOHFo">
+                     <a data-ajax-mode="disabled" href="/earrings/diamond-stud-earrings/">
+                        <span style="margin-bottom: 50px; bottom: 192px;" class="float-white-box--XidVC">
+                           <h3 class="float-header--RPk6d">diamond studs</h3>
+                           <div class="float-content--wTe8A">The perfect gift for any occasion, these handcrafted preset diamond studs make a bold yet elegant statement.</div>
+                           <div class="float-bottom--ukk67">
+                              <div class="pink-bg--hZDky">browse</div>
+                           </div>
+                        </span>
+                     </a>
+                     <div class="pink-box--tsz67 pink-box4--ET3SC" style="bottom: 219px; background-position-y: 77px;"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+   
+        
+      <div style="margin-bottom:98px" class="title-pack--WpNvc center--DlBad">
+         <div>your personal</div>
+         <div>diamond concierge awaits...</div>
+      </div>
+ 
+      <div style="margin-bottom:105px" class="wideContent"><div class="justify-align as-container--gu7ZI"><div><div style="padding-right:33px" class="as-content--GmgN2 as-left--BJAzY"><div class="img-bg--lioNA Image_Washington--_Pwf_"></div><div style="border-left:none" class="as-text--iRX1y"><div style="text-align:right"><div class="as-text-1--P5Yla">EXPERIENCE JAMES ALLEN</div><div class="as-text-2--Yl803">IN WASHINGTON, D.C.</div><div style="font-size:14px;margin-bottom:30px">Join us in Georgetown for an experience like no other! Get to know diamonds and jewels using the latest tech, and try on a large selection of products.<br><br><span style="font-weight:bold !important;font-size:16px">Open: Monday – Saturday 11 a.m. – 7 p.m.<br>Sunday 12 p.m. – 7 p.m.</span></div></div></div></div><div style="padding-right:33px;margin-top:20px" class="as-content--GmgN2 as-left--BJAzY"><div class="img-bg--lioNA Costumer_Brake--a5Wka"></div><div style="border-left:none" class="as-text--iRX1y"><div style="text-align:right"><div class="as-text-1--P5Yla">VISIT OUR</div><div class="as-text-2--Yl803">NYC SHOWROOM</div><div style="font-size:14px;margin-bottom:30px">Stop by our ‘sanctuary of sparkle’ on Fifth Avenue to view diamond rings and fine jewelry in 3D, and try on actual products - <b class="by-b--qVB5Q">by appointment only</b>.</div><div style="font-size:16px;font-weight:bold;white-space:nowrap" class="pink-bg--hZDky"><a data-ajax-mode="disabled" href="locations/">SCHEDULE APPOINTMENT</a></div></div></div></div></div> <div style="padding-left:33px" class="as-content--GmgN2 as-right--VfS9D"><div style="border-right:none" class="as-text--iRX1y"><div><div class="as-text-1--P5Yla">WORLD-CLASS</div><div class="as-text-2--Yl803">CUSTOMER SERVICE</div><div style="font-size:14px;margin-bottom:30px">James Allen’s team of non-commissioned certified gemologists is available 24/7 via live chat, phone, and email to help you choose the product that’s right for you.</div><div style="font-size:16px;font-weight:bold" class="pink-bg--hZDky"><a data-ajax-mode="disabled" href="guarantee/customer-service/">CONTACT US</a></div></div></div><div class="img-bg--lioNA"></div></div> </div></div>
+      <div class="meet-bg-container--Va7_i">
+   <div class="meet-bg--j36U8">
+      <div style="margin:0 auto;position:relative;bottom:29px" class="separator-container--aGiVL">
+         <div style="background-color:#f9f3ec" class="separator--fMSd5"></div>
+         <div style="background-color:#fff" class="separator--fMSd5"></div>
+      </div>
+   </div>
+   <div class="title-pack--WpNvc">
+      <div></div>
+      <div>Pics or It Didn’t Happen!</div>
+      <div class="sub-title--_bLmY">View our customers’ engagement moments from around the world</div>
+   </div>
+</div>
+      <div class="wideContent"><div data-gtm-name="engagement moments" class="moments--Wemvc"><div><a><img src="https://ion.r2net.com/images/amazingHomepage/1_engage.jpg" alt="A couple on a hot balloon ride" title="A couple on a hot balloon ride"></a></div><div><a><img src="https://ion.r2net.com/images/amazingHomepage/2_engage.jpg" alt="A couple hugging in a field of flowers" title="A couple hugging in a field of flowers"></a></div><div><a><img src="https://ion.r2net.com/images/amazingHomepage/3_engage.jpg" alt="A couple hugging while showing their engagement ring" title="A couple hugging while showing their engagement ring"></a></div><div><a><img src="https://ion.r2net.com/images/amazingHomepage/4_engage.jpg" alt="A guy hugging his girlfriend while holding the ring box behind her back" title="A guy hugging his girlfriend while holding the ring box behind her back"></a></div><div><a><img src="https://ion.r2net.com/images/amazingHomepage/5_engage.jpg" alt="A newly engaged couple, she has a surprised face" title="A newly engaged couple, she has a surprised face"></a></div><div><a><img src="https://ion.r2net.com/images/amazingHomepage/6_engage.jpg" alt="A couple looking at each other during a walk in the park" title="A couple looking at each other during a walk in the park"></a></div><div class="collage-middle--xI1TF"><div><a><img src="https://ion.r2net.com/images/amazingHomepage/7_engage.jpg" alt="An couple kissing after their proposal on a boat" title="An couple kissing after their proposal on a boat"></a></div><div><a><div style="height:256px" class="lazyload-placeholder"></div></a></div></div><div class="collage-middle--xI1TF"><div><a><img src="https://ion.r2net.com/images/amazingHomepage/9_engage.jpg" alt="A guy hugging his partner from behind" title="A guy hugging his partner from behind"></a></div><div><a><div style="height:256px" class="lazyload-placeholder"></div></a></div></div><div class="collage-double--U_C25"><a><img src="https://ion.r2net.com/images/amazingHomepage/11_engage.jpg" alt="A newly engaged couple kissing, he’s lifting her in the air" title="A newly engaged couple kissing, he’s lifting her in the air"></a></div></div><div data-gtm-name="engagement moments" style="width:225px;margin:42px auto;text-align:center;font-size:18px;display:block" class="start-button--E9kWV"><a style="padding:15px 27px;font-family:Nunito Sans" data-ajax-mode="disabled" href="/engagement-moments/">READ THE STORIES</a></div></div>
+   </div>
+</div>
+               
         </main><!-- End .main -->
+        
 
         <?php
              include_once('footer.php');
@@ -1027,6 +1223,7 @@
             </div><!-- End .modal-content -->
         </div><!-- End .modal-dialog -->
     </div>
+    
 
     
     <?php

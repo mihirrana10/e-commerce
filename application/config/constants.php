@@ -18,6 +18,16 @@ define('FILE_WRITE_MODE', 0666);
 define('DIR_READ_MODE', 0755);
 define('DIR_WRITE_MODE', 0777);
 
+
+// $config['encryption_key'] = '026914-69125-034179-72360-345729';
+
+
+// define('STRIPE_KEY','pk_test_51Lrx5cSF4QyU8JXwef78yn4JXjESleNFcHTcIHPUwlcsAyNNHwAs6C4eDUzMROiHlgxLfqcUZRhuJLK4hssmVj6D00zMpAWPPp');
+// define('STRIPE_SECRET','sk_test_51Lrx5cSF4QyU8JXwdH3ophf9iKqoKrYibQHgOEL6Et85To5W2cOwn8uBo187cotHWIV6kuzOrDongnCmjMGlmSnb00YGBO8gSG');
+
+define('RAZOR_KEY_ID', 'rzp_test_WKHV9byNfOPggx');
+define('RAZOR_KEY_SECRET', 'W92yExljyDAnpTYAE7B9hk8I');
+
 /*
 |--------------------------------------------------------------------------
 | File Stream Modes

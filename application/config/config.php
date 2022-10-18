@@ -14,7 +14,20 @@
 | path to your installation.
 |
 */
+$autoload['libraries'] = array('database', 'session');
+
+$autoload['helper'] = array('url');
+
+
 $config['base_url']	= '';
+
+
+$config['stripe_publishable_key'] ="pk_test_51LsOZzSCZMXFVOoHrhP4PHnT5xpbgte70LWRzQChdy6X4S0thoj3MR2zKeFo5MDEH2SH8tsulF0ohgE5LyUFI85f002wbxAwQh";
+$config['stripe_secret_key']="sk_test_51LsOZzSCZMXFVOoHLe5hETDI4QfXrEtv2CLAipRWnnXMcBFBk9I7zW2fK3Ec4VKCgHiROETTqviHyY4QfdMtFHx6008c1FW7hq";
+$config['stripe_currency'] ="inr";
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -224,7 +237,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = 'hjhjdhjhdkdjksjdk';
 
 /*
 |--------------------------------------------------------------------------
@@ -360,3 +373,6 @@ $config['proxy_ips'] = '';
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */
+
+
+

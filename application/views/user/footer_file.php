@@ -29,6 +29,13 @@
     <!-- Main JS File -->
     <script src="<?php echo base_url(); ?>template/user/assets/js/main.js"></script>
     <script src="<?php echo base_url(); ?>template/user/assets/js/demos/demo-2.js"></script>
+    <script src="<?php echo base_url(); ?>template/user/assets/js/product.js"></script>
+
+
+    <script>
+        
+    </script>
+
     <style type="text/css">
     .brand
     {
@@ -41,5 +48,7 @@
     }
     
 </style>
+
+
 
     

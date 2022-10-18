@@ -18,7 +18,7 @@
    <!-- <link rel="stylesheet" href="<?php echo base_url(); ?>template/user/assets/css/bootstrap743d.css"> -->
    <link rel="stylesheet" href="<?php echo base_url(); ?>template/user/assets/css/wpbingo743d.css">
    <link rel="stylesheet" href="<?php echo base_url(); ?>template/user/assets/css/elegant743d.css">
-   <link rel="stylesheet" href="<?php echo base_url(); ?>template/user/assets/css/icomoon743d.css">
+   <!-- <link rel="stylesheet" href="<?php echo base_url(); ?>template/user/assets/css/icomoon743d.css"> -->
    <link rel="stylesheet" href="<?php echo base_url(); ?>template/user/assets/css/jquery.circlestime743d.css">
    <link rel="stylesheet" href="<?php echo base_url(); ?>template/user/assets/css/elegant7materia743d43d.css">
    <link rel="stylesheet" href="<?php echo base_url(); ?>template/user/assets/css/photoswipe.minaec2.css">
@@ -107,7 +107,7 @@
                                                         }
                                                         
                                                         ?>   
-                                                        <img width="25%" height="25%" src="https://wpbingosite.com/wordpress/mojuri/wp-content/uploads/2018/10/15-1.jpg" class="attachment-shop_single size-shop_single wp-post-image" alt="" id="image" title=""  data-large_image_width="1000" data-large_image_height="1000" />
+     <img width="25%" height="25%" src="https://wpbingosite.com/wordpress/mojuri/wp-content/uploads/2018/10/15-1.jpg" class="attachment-shop_single size-shop_single wp-post-image" alt="" id="image" title=""  data-large_image_width="1000" data-large_image_height="1000" />
          <div class="mojuri-360-button"><i class="wpb-icon-d-design"></i>360</div>
          <div class="content-product-360-view">
             <div class="product-360-view" data-count="18">
@@ -136,8 +136,7 @@
                   </ul>
                </div>
             </div>
-         </div>   
-                                            </div><!-- End .product-image-gallery -->
+         </div>                 </div><!-- End .product-image-gallery -->
                                             
                                         </div><!-- End .product-gallery -->
                                     </div><!-- End .col-md-6 -->

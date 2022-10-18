@@ -2653,14 +2653,7 @@ blockquote.text-white cite span {
 a {
   font-family: "Poppins";
 }
-p {
-  margin-bottom: 0;
-  font-size: 1.4rem;
-  font-weight: 300;
-  font-family: "Poppins";
-  letter-spacing: 0;
-  color: #777;
-}
+
 .header-2 {
   background-color: #fff;
 }
