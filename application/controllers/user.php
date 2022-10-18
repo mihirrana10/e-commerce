@@ -1,17 +1,45 @@
 <?php 
 session_start();
+use \Stripe\Checkout\Session;   
+use \Stripe\Stripe;
+
 class user extends CI_Controller
 {
     public function __construct()
     {
+       
         parent::__construct();
-        // $_SESSION["per_page"] = "10";
-        if (!isset($_SESSION["user_email"])) {
-            redirect(base_url() . 'login');
-        }
+        // $this->load->library('session');
+        $this->load->library('facebook');
+       
+// Load google oauth library 
+                        // $this->load->library('google/google.php'); 
+                        $this->load->model('details'); 
+                        require_once(APPPATH."libraries/google/google.php");
+                     
+       
+
+        // $_SESSION["per_page"] = "10";    
+        // if (!isset($_SESSION["user_email"])) {
+        //     redirect(base_url() . 'login');
+        // }
+
+        $this->load->library('paypal_lib');
+        require_once(APPPATH."libraries/razorpay/razorpay-php/Razorpay.php");
+
+        require_once('vendor/autoload.php');
+
+        
+
+        // require_once('application/libraries/stripe-php/init.php');
+
+        // $this->load->library("session");
+        // $this->load->helper('url');
+       
+        // use Razorpay\Api\Api;
+        // use Razorpay\Api\Errors\SignatureVerificationError;
     }
-   
-    
+
     public function index()
 	{
         $page_data["resultset"]=$this->db->get("tbl_product_new");
@@ -689,6 +717,730 @@ class user extends CI_Controller
         $this->load->view('user/myaccountview',$page_data);
     }
 
+    // public function categroy_product()
+    // {
+    //     $page_data["resultset"]=$this->db->get_where('tbl_category',array('category_seo_slug'=>$category_slug));
 
+    //     $this->load->view('user/new_category_view',$page_data);
+    // }
+
+    public function search_query($action="",$param="")
+    {
+        $url=$_SERVER['HTTP_REFERER'];
+        
+    
+        parse_str(parse_url($url, PHP_URL_QUERY), $output);
+
+        //echo  print_r($output, TRUE);
+
+        //echo $output;
+
+        $cat_url="";
+        $attr_url="";
+        $price_url="";
+
+        if($action=="category")
+        {
+            if($output['category']=="")
+            {
+                $cat_url="&category=".$param;
+            }
+            else
+            {
+                $cat_url="&category=".$output['category']."_".$param;
+            }
+            $attr_url="&attr=".$output['attr'];
+            $price_url="&price_range=".$output['price_range'];
+        }
+
+        if($action=="attr")
+        {
+            if($output['attr']=="")
+            {
+                $attr_url="&attr=".$param;
+            }
+            else
+            {
+                $attr_url="&attr=".$output['attr']."_".$param;
+            }
+            $cat_url="&category=".$output['category'];
+            $price_url="&price_range=".$output['price_range'];
+        }
+
+        if($action=="price_range")
+        {
+            
+            $price_url="&price_range=".$param;
+            $cat_url="&category=".$output['category'];
+            $attr_url="&attr=".$output['attr'];
+        }
+
+        /*if(empty($output))
+        {
+            if($action=="category")
+            {
+                $cat_url="&category=".$param;
+            }
+            if($action=="attr")
+            {
+                $attr_url="&attr=".$param;
+            }
+            if($action=="price_range")
+            {
+                $price_url="&price_range=".$param;
+            }
+        }
+        else
+        {
+            foreach ($output as $key => $value) 
+            {
+                if($key=="category")
+                {
+                    $cat_url="&category=".$value;
+                }
+                if($key=="attr")
+                {
+                    $attr_url="&attr=".$value;
+                }
+                if($key=="price_range")
+                {
+                    $price_url="&price_range=".$value;
+                }
+
+                $output_value = explode("_", $value);
+                if($action=="category")
+                {
+                    if($key=="category")
+                    {
+                        $cat_url="&category=".$value."_".$param;
+                    }
+                    else
+                    {
+                        $cat_url="&category=".$param;
+                    }
+                }
+                if($action=="attr")
+                {
+                    if($key=="attr")
+                    {
+
+                        $attr_url="&attr=".$value."_".$param;
+                    }
+                    else
+                    {
+                        $attr_url="&attr=".$param;
+                    }
+                }
+
+                if($action=="price_range")
+                {
+                    $price_url="&price_range=".$param;
+                }
+            }
+        }
+
+        */
+
+        //echo "Hello world ".$price_url;
+
+        //echo "<br>".$attr_url;
+
+        $final_parsed_url=parse_url($url);
+
+        //$final_url = $final_parsed_url['scheme']."://".$final_parsed_url['host'].$final_parsed_url['path']."?".$cat_url.$attr_url.$price_url;
+
+        //echo $final_url;
+
+        $final_url = $final_parsed_url['scheme']."://".$final_parsed_url['host'].$final_parsed_url['path']."?";
+
+        if($cat_url!="&category=")
+        {
+            $final_url=$final_url.$cat_url;
+        }
+
+        if($attr_url!="&attr=")
+        {
+            $final_url=$final_url.$attr_url;
+        }
+
+        if($price_url!="&price_range=")
+        {
+            $final_url=$final_url.$price_url;
+        }
+
+        echo $final_url;
+        //redirect($final_url);
+
+
+
+        /*var_dump(parse_url($url));
+        var_dump(parse_url($url, PHP_URL_SCHEME));
+        var_dump(parse_url($url, PHP_URL_USER));
+        var_dump(parse_url($url, PHP_URL_PASS));
+        var_dump(parse_url($url, PHP_URL_HOST));
+        var_dump(parse_url($url, PHP_URL_PORT));
+        var_dump(parse_url($url, PHP_URL_PATH));
+        var_dump(parse_url($url, PHP_URL_QUERY));
+        var_dump(parse_url($url, PHP_URL_FRAGMENT));
+        */
+
+   
+    }
+
+    public function remove_search_query($action="",$param="")
+    {
+        $url=$_SERVER['HTTP_REFERER'];
+        
+    
+        parse_str(parse_url($url, PHP_URL_QUERY), $output);
+
+        echo  print_r($output, TRUE);
+
+        //echo $output;
+
+        $cat_url="";
+        $attr_url="";
+        $price_url="";
+
+        if($action=="category")
+        {
+            /*if($output['category']=="")
+            {
+                $cat_url="&category=".$param;
+            }
+            else
+            {
+                $cat_url="&category=".$output['category']."_".$param;
+            }
+            */
+            if($output['category']!="")
+            {
+                /*
+                if (($key = array_search($param, $output['category'])) !== false) 
+                {
+                    unset($output['category'][$key]);
+                }
+
+                echo "<br>Url : ".implode("_", $output['category'])."<br>";
+                */
+                $check_cat_array=explode("_", $output['category']);
+                $delete_array=array($param);
+                //var_dump(array_diff($check_cat_array,$delete_array )); 
+
+                $final_c=array_diff($check_cat_array,$delete_array );
+
+                $cat_url="&category=".implode("_", $final_c);
+
+
+            }
+            $attr_url="&attr=".$output['attr'];
+            $price_url="&price_range=".$output['price_range'];
+        }
+
+        if($action=="attr")
+        {
+            if($output['attr']!="")
+            {
+                /*
+                if (($key = array_search($param, $output['category'])) !== false) 
+                {
+                    unset($output['category'][$key]);
+                }
+
+                echo "<br>Url : ".implode("_", $output['category'])."<br>";
+                */
+                $check_attr_array=explode("_", $output['attr']);
+                $delete_attr_array=array($param);
+                //var_dump(array_diff($check_cat_array,$delete_array )); 
+
+                $final_a=array_diff($check_attr_array,$delete_attr_array );
+
+                $attr_url="&attr=".implode("_", $final_a);
+
+
+            }
+            $cat_url="&category=".$output['category'];
+            $price_url="&price_range=".$output['price_range'];
+        }
+
+        if($action=="price_range")
+        {
+            
+            $price_url="&price_range=".$param;
+            $cat_url="&category=".$output['category'];
+            $attr_url="&attr=".$output['attr'];
+        }
+
+        
+
+        //echo "Hello world ".$price_url;
+
+        //echo "<br>".$attr_url;
+
+        $final_parsed_url=parse_url($url);
+
+        //$final_url = $final_parsed_url['scheme']."://".$final_parsed_url['host'].$final_parsed_url['path']."?".$cat_url.$attr_url.$price_url;
+
+        //echo $final_url;
+
+        $final_url = $final_parsed_url['scheme']."://".$final_parsed_url['host'].$final_parsed_url['path']."?";
+
+        if($cat_url!="&category=")
+        {
+            $final_url=$final_url.$cat_url;
+        }
+
+        if($attr_url!="&attr=")
+        {
+            $final_url=$final_url.$attr_url;
+        }
+
+        if($price_url!="&price_range=")
+        {
+            $final_url=$final_url.$price_url;
+        }
+
+        redirect($final_url);
+
+    }
+
+    public function product_page()
+    {
+        
+        $this->load->view('user/product_page');
+    }
+
+    public function product_setting_page()
+    {
+      $this->load->view('user/product_setting_page');
+    }
+
+    public function allsetting()
+    {
+        $this->load->view('user/manage_allsettings');
+    }
+
+    public function faq()
+    {
+      $this->load->view('user/faq');
+    }
+
+    public function education()
+    {
+        $this->load->view('user/education');
+    }
+
+    public function finejewelry()
+    {
+        $this->load->view('user/finejewelry');
+    }
+    
+    public function loose_diamonds()
+    {
+        $this->load->view('user/loose_diamonds');
+    }
+
+    public function wedding_rings()
+    {
+        $this->load->view('user/wedding_rings');
+    }
+
+    public function engagement_rings()
+    {
+      $this->load->view('user/engagement_rings');
+    }
+
+    public function gemstones()
+    {
+        $this->load->view('user/gemstones');
+    }
+
+    public function hello()
+    {
+        $this->load->view('user/hello');
+    }
+
+    public function step()
+    {
+        $this->load->view('user/steps');
+    }
+
+
+    public function payment()
+    {
+        $this->load->view('user/payment_get');
+    }
+
+    public function paypaldemo()
+    {
+        $this->paypal_lib->paypal_auto_form();
+        $this->load->view('user/paypaldemo');
+
+    }
+
+    public function razorpay()
+    {
+        $this->load->view('user/razorpaydemo');
+    }
+
+    public function strip()
+    {
+    
+        require_once('application/libraries/stripe-php/init.php');
+        // \Stripe\Stripe::setApiKey(STRIPE_KEY);
+        // echo $this->config->item(STRIPE_KEY);
+        // echo STRIPE_KEY;
+
+        // \Stripe\Charge::create ([
+        //         "amount" => 100 * 100,
+        //         "currency" => "inr",
+        //         "source" => $this->input->post('stripeToken'),
+        //         "description" => "Test payment." 
+        // ]);
+            
+        // $this->session->set_flashdata('success', 'Payment is successful.');
+        // redirect('/payment-gateway', 'refresh');
+
+
+        $this->load->view('user/strip');
+        
+    }
+
+    public function checkout()
+    {
+      $this->load->view("user/checkout");
+    }
+
+    public function create(){
+   
+        
+        $amount  = $this->input->post('amount');
+        $qty  = $this->input->post('qty');
+        echo $this->config->item('stripe_currency');
+        echo "<br>";
+        echo $this->config->item('stripe_secret_key');
+        Stripe::setApiKey($this->config->item('stripe_secret_key'));
+            //  echo $this->config->item('stripe_secret_key');
+        $checkout_session = \Stripe\Checkout\Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [[
+              'name' => 'T-shirt',
+              'description' => 'Comfortable cotton t-shirt',
+              'images' => ['https://example.com/t-shirt.png'],
+              'amount' => 2000,
+              'currency' => 'usd',
+
+              'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => 'https://example.com/success?session_id={CHECKOUT_SESSION_ID}',
+            'cancel_url' => 'https://example.com/cancel',
+          ]);
+        header("Location:".$checkout_session->url);
+        
+    }
+
+
+    public function drive()
+    {
+        $this->load->view('user/drive');
+    }
+
+    // function login()
+    // {
+    //     require_once('vendor/autoload.php');
+   
+    //  $google_client = new Google_Client();
+   
+    //  $google_client->setClientId('976532754089-o8eh5ql98ivqv4vjvp6qvdaupgj58d4j.apps.googleusercontent.com'); //Define your ClientID
+   
+    //  $google_client->setClientSecret('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'); //Define your Client Secret Key
+   
+    //  $google_client->setRedirectUri('http://localhost/james_allen/user/login'); //Define your Redirect Uri
+   
+    //  $google_client->addScope('email');
+   
+    //  $google_client->addScope('profile');
+   
+    //  if(isset($_GET["code"]))
+    //  {
+    //   $token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
+   
+    //   if(!isset($token["error"]))
+    //   {
+    //    $google_client->setAccessToken($token['access_token']);
+   
+    //    $this->session->set_userdata('access_token', $token['access_token']);
+   
+    //    $google_service = new Google_Service_Oauth2($google_client);
+   
+    //    $data = $google_service->userinfo->get();
+   
+    //    $current_datetime = date('Y-m-d H:i:s');
+   
+    //    if($this->google_login_model->Is_already_register($data['id']))
+    //    {
+    //     //update data
+    //     $user_data = array(
+    //      'first_name' => $data['given_name'],
+    //      'last_name'  => $data['family_name'],
+    //      'email_address' => $data['email'],
+    //      'profile_picture'=> $data['picture'],
+    //      'updated_at' => $current_datetime
+    //     );
+   
+    //     $this->google_login_model->Update_user_data($user_data, $data['id']);
+    //    }
+    //    else
+    //    {
+    //     //insert data
+    //     $user_data = array(
+    //      'login_oauth_uid' => $data['id'],
+    //      'first_name'  => $data['given_name'],
+    //      'last_name'   => $data['family_name'],
+    //      'email_address'  => $data['email'],
+    //      'profile_picture' => $data['picture'],
+    //      'created_at'  => $current_datetime
+    //     );
+   
+    //     $this->google_login_model->Insert_user_data($user_data);
+    //    }
+    //    $this->session->set_userdata('user_data', $user_data);
+    //   }
+    //  }
+    //  $login_button = '';
+    //  if(!$this->session->userdata('access_token'))
+    //  {
+    //   $login_button = '<a href="'.$google_client->createAuthUrl().'"><img src="'.base_url().'asset/sign-in-with-google.png" /></a>';
+    //   $data['login_button'] = $login_button;
+    //   $this->load->view('user/google_login', $data);
+    //  }
+    //  else
+    //  {
+    //   $this->load->view('user/google_login', $data);
+    //  }
+    // }
+   
+    // function logout()
+    // {
+    //  $this->session->unset_userdata('access_token');
+   
+    //  $this->session->unset_userdata('user_data');
+   
+    //  redirect('user/google_login/login');
+    // }
+    
+    public function loging(){ 
+
+    include_once APPPATH . "libraries/vendor/autoload.php";
+
+            $google_client = new Google_Client();
+
+            $google_client->setClientId('976532754089-o8eh5ql98ivqv4vjvp6qvdaupgj58d4j.apps.googleusercontent.com'); //Define your ClientID
+
+            $google_client->setClientSecret('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'); //Define your Client Secret Key
+
+            $google_client->setRedirectUri('https://vimlaprints.com/'); //Define your Redirect Uri
+
+            $google_client->addScope('email');
+
+            $google_client->addScope('profile');
+
+            if(isset($_GET["code"]))
+            {
+            $token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
+
+            if(!isset($token["error"]))
+            {
+                $google_client->setAccessToken($token['access_token']);
+
+                $this->session->set_userdata('access_token', $token['access_token']);
+
+                $google_service = new Google_Service_Oauth2($google_client);
+
+                $data = $google_service->userinfo->get();
+
+                $current_datetime = date('Y-m-d H:i:s');
+
+                if($this->google_login_model->Is_already_register($data['id']))
+                {
+                //update data
+                $user_data = array(
+                'first_name' => $data['given_name'],
+                'last_name'  => $data['family_name'],
+                'email_address' => $data['email'],
+                'profile_picture'=> $data['picture'],
+                'updated_at' => $current_datetime
+                );
+
+                $this->google_login_model->Update_user_data($user_data, $data['id']);
+                }
+                else
+                {
+                //insert data
+                $user_data = array(
+                'login_oauth_uid' => $data['id'],
+                'first_name'  => $data['given_name'],
+                'last_name'   => $data['family_name'],
+                'email_address'  => $data['email'],
+                'profile_picture' => $data['picture'],
+                'created_at'  => $current_datetime
+                );
+
+                $this->google_login_model->Insert_user_data($user_data);
+                }
+                $this->session->set_userdata('user_data', $user_data);
+            }
+            }
+            $login_button = '';
+            if(!$this->session->userdata('access_token'))
+            {
+            $login_button = '<a href="'.$google_client->createAuthUrl().'"><img src="https://user-images.githubusercontent.com/1531669/41761219-0e0e4d80-7629-11e8-9663-aabe62025d57.png" /></a>';
+            $data['login_button'] = $login_button;
+            $this->load->view('user/loging', $data);
+
+            }
+            else
+            {
+            $this->load->view('user/loging', $data);
+            }
+                        
+
+        
+         
+    } 
+     
+    // public function loging()
+    // {
+    //    $this->load->view('user/loging');
+    // }
+
+    public function profile(){ 
+         /* Redirect to login page if the user not logged in */
+        if(!$this->session->userdata('loggedIn')){ 
+            redirect('/user/loging'); 
+        } 
+         
+         /* Get user info from session */
+        $data['userData'] = $this->session->userdata('userData'); 
+         
+         /* Load user profile view */
+        $this->load->view('user/profile',$data); 
+    } 
+
+    public function logout(){ 
+        // Reset OAuth access token 
+        $this->google->revokeToken(); 
+         
+        // Remove token and user data from the session 
+        $this->session->unset_userdata('loggedIn'); 
+        $this->session->unset_userdata('userData'); 
+         
+        // Destroy entire session data 
+        $this->session->sess_destroy(); 
+         
+        // Redirect to login page 
+        redirect('/user/loging'); 
+    } 
+
+//     public function facebooklogin()
+//     {
+//         $data = [];
+//         require_once APPPATH. 'libraries/vendor/autoload.php';
+
+        
+//     $fb = new Facebook\Facebook([
+//         'app_id' => '2137064646482804',
+//         'app_secret' => '6f5eb9de42b52f35559db44f79955581',
+//         'default_graph_version' => 'v2.5',
+//       ]);
+
+//  $helper = $fb->getRedirectLoginHelper();
+
+//  $permissions = ['email','user_location','user_birthday','publish_actions']; 
+// // For more permissions like user location etc you need to send your application for review
+
+//  $loginUrl = $helper->getLoginUrl('http://localhost', $permissions);
+       
+//         $this->load->view('user/facebooklogin',$data); 
+        
+//     }
+
+    public function hi() {
+        $data['fb'] = $this->getauth();
+        $data['LogonUrl'] =  $this->facebook->login_url();
+        $this->load->view('user/facebooklogin', $data);
+        
+    }
+
+    public function getauth() {
+        $userProfile = array();
+        if ($this->facebook->is_authenticated()) {
+            $userProfile = $this->facebook->request('get', '/me?fields=id,first_name,last_name,email,gender,locale,picture');
+       }
+        echo $this->facebook->is_authenticated();   
+
+        return $userProfile;
+    }
+
+
+
+    public function hidrive()
+    {
+        include_once APPPATH . "libraries/vendor/autoload.php";
+//         require_once 'Google/Client.php';
+// require_once 'Google/Service/Drive.php';
+
+$client = new Google_Client();
+/* Get your credentials from the console */
+$client->setClientId('976532754089-o8eh5ql98ivqv4vjvp6qvdaupgj58d4j.apps.googleusercontent.com');
+$client->setClientSecret('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');
+$client->setRedirectUri('https://vimlaprints.com/');
+$client->setScopes(array('https://www.googleapis.com/auth/drive.file'));
+$client->setAccessType('offline');
+
+
+// session_start();
+
+if (isset($_GET['code']) || (isset($_SESSION['access_token']) && $_SESSION['access_token'])) {
+    if (isset($_GET['code'])) {
+        $client->authenticate($_GET['code']);
+        $_SESSION['access_token'] = $client->getAccessToken();
+    } else
+        $client->setAccessToken($_SESSION['access_token']);
+
+    $service = new Google_Service_Drive($client);
+
+    /* Insert a file */
+    $file = new Google_Service_Drive_DriveFile();
+    $file->setName(uniqid().'.jpg');
+    $file->setDescription('A test document');
+    $file->setMimeType('image/jpeg');
+
+    $data = file_get_contents('a.jpg');
+
+    $createdFile = $service->files->create($file, array(
+          'data' => $data,
+          'mimeType' => 'image/jpeg',
+          'uploadType' => 'multipart'
+        ));
+
+    print_r($createdFile);
+
+} else {
+    $authUrl = $client->createAuthUrl();
+    header('Location: ' . $authUrl);
+    exit();
+}
+        
+      $this->load->view('user/drive');
+  
+    }
+
+
+   
+ 
+
+  
 }
 ?>
