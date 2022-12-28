@@ -2,6 +2,14 @@
 session_start();
 class login extends CI_Controller
 {
+
+	function __construct()
+	{
+		parent::__construct();
+		    //  $this->load->library('form_validation');
+		//$this->load->database();
+	}
+
 	public function index()
 	{
 		$this->load->view('user/login_view');	

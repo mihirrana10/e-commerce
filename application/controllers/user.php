@@ -10,9 +10,12 @@ class user extends CI_Controller
        
         parent::__construct();
         // $this->load->library('session');
+        // if (!isset($_SESSION["txt_user_email"])) {
+        //     redirect(base_url() . 'index.php');
+        // }
         $this->load->library('facebook');
        
-// Load google oauth library 
+                        // Load google oauth library 
                         // $this->load->library('google/google.php'); 
                         $this->load->model('details'); 
                         require_once(APPPATH."libraries/google/google.php");
@@ -39,6 +42,9 @@ class user extends CI_Controller
         // use Razorpay\Api\Api;
         // use Razorpay\Api\Errors\SignatureVerificationError;
     }
+
+
+   
 
     public function index()
 	{

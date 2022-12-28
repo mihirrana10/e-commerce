@@ -26,5 +26,6 @@ $config['facebook_login_type']            = 'web';
 $config['facebook_permissions']           = array('email');
 $config['facebook_graph_version']         = 'v3.2';
 $config['facebook_auth_on_load']          = TRUE;
+// $config['facebbok_auth_on_load']          = true;
 
 
