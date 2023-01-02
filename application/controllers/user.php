@@ -17,17 +17,8 @@ class user extends CI_Controller
        
                         // Load google oauth library 
                         // $this->load->library('google/google.php'); 
-                        $this->load->model('details'); 
-                        require_once(APPPATH."libraries/google/google.php");
-                     
-       
+                        $this->load->library('paypal_lib');
 
-        // $_SESSION["per_page"] = "10";    
-        // if (!isset($_SESSION["user_email"])) {
-        //     redirect(base_url() . 'login');
-        // }
-
-        $this->load->library('paypal_lib');
         require_once(APPPATH."libraries/razorpay/razorpay-php/Razorpay.php");
 
         require_once('vendor/autoload.php');
